@@ -634,4 +634,65 @@
   .modal-content {
     padding: 24px;
   }
+
+  #naverMap {
+    height: 350px;
+  }
+
+  .curriculum-meta {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section,
+  .facility-section,
+  .location-section,
+  .success-section,
+  .videos-section {
+    padding: 60px 0;
+  }
+
+  .feature-card {
+    padding: 30px 20px;
+  }
+
+  .feature-icon {
+    font-size: 36px;
+  }
+
+  .feature-title {
+    font-size: 16px;
+  }
+
+  .location-card {
+    padding: 24px 20px;
+  }
+
+  #naverMap {
+    height: 280px;
+  }
+
+  .board-table th,
+  .board-table td {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  .video-info {
+    padding: 16px;
+  }
+
+  .video-title {
+    font-size: 15px;
+  }
+
+  .curriculum-card {
+    padding: 20px;
+  }
+
+  .curriculum-card-title {
+    font-size: 18px;
+  }
 }
