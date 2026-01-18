@@ -97,6 +97,9 @@
   <!-- Teachers Section -->
   <section class="section teachers-section">
     <div class="container">
+      <div class="teachers-admin-header" style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+        <button id="addTeacherBtn" class="btn btn-primary" style="display:none;">+ 강사 추가</button>
+      </div>
       <div class="teachers-list" id="teachersList">
         <!-- Teacher 1: 오순태 -->
         <article class="teacher-card scroll-animate">
@@ -388,7 +391,82 @@
     </div>
   </footer>
 
+  <!-- Teacher Edit Modal -->
+  <div class="modal" id="teacherEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeTeacherModal()"></div>
+    <div class="modal-content modal-large">
+      <h3 class="modal-title" id="modalTitle">강사 정보 수정</h3>
+      <form id="teacherEditForm">
+        <div class="form-group">
+          <label>이름 *</label>
+          <input type="text" id="teacherName" placeholder="강사 이름" required>
+        </div>
+        <div class="form-group">
+          <label>역할 *</label>
+          <input type="text" id="teacherRole" placeholder="예: 대표, 원장, 연기파트 강사">
+        </div>
+        <div class="form-group">
+          <label>소개</label>
+          <input type="text" id="teacherIntro" placeholder="한 줄 소개">
+        </div>
+        <div class="form-group">
+          <label>사진 URL</label>
+          <input type="text" id="teacherImageUrl" placeholder="images/강사명.jpg">
+        </div>
+        <div class="form-group">
+          <label>사진 파일 업로드</label>
+          <input type="file" id="teacherImageFile" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label>상세 정보 (각 섹션은 [제목]으로 시작)</label>
+          <textarea id="teacherDetails" rows="10" placeholder="[학력]
+중앙대학교
+
+[연극]
+작품명1, 작품명2
+
+[영화]
+작품명1, 작품명2"></textarea>
+          <small style="color:#888;font-size:12px;">리스트 형식은 "레이블|내용" 으로 입력 (예: 2020|작품명)</small>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeTeacherModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .teacher-edit-btn, .teacher-delete-btn {
+      position: absolute;
+      z-index: 10;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .teacher-edit-btn {
+      bottom: 50px;
+      right: 10px;
+      background: var(--color-gold);
+      color: #000;
+    }
+    .teacher-delete-btn {
+      bottom: 10px;
+      right: 10px;
+      background: #c00;
+      color: #fff;
+    }
+    .teacher-edit-btn:hover { opacity: 0.9; }
+    .teacher-delete-btn:hover { background: #a00; }
+    .teacher-image { position: relative; }
+  </style>
+
   <script src="./shared/admin-auth.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/teachers.js"></script>
 </body>
 </html>
