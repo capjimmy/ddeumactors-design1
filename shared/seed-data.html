@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뜸 연기학원 - 시드 데이터 추가</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .status-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .status-icon.pending {
+            background: #e9ecef;
+            color: #666;
+        }
+        .status-icon.loading {
+            background: #fff3cd;
+            color: #856404;
+            animation: pulse 1s infinite;
+        }
+        .status-icon.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-icon.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .status-text {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+        }
+        .status-detail {
+            font-size: 12px;
+            color: #666;
+        }
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .log-box {
+            margin-top: 20px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 16px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+        .log-box.visible {
+            display: block;
+        }
+        .log-entry {
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 12px;
+            color: #4ade80;
+            margin-bottom: 4px;
+        }
+        .log-entry.error {
+            color: #f87171;
+        }
+        .log-entry.info {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Firebase 시드 데이터 추가</h1>
+        <p class="subtitle">뜸 연기학원 초기 데이터를 Firebase에 추가합니다.</p>
+
+        <div class="status-box">
+            <div class="status-item" id="status-hero">
+                <div class="status-icon pending">-</div>
+                <div class="status-text">settings/hero 문서</div>
+                <div class="status-detail">히어로 섹션 설정</div>
+            </div>
+            <div class="status-item" id="status-names">
+                <div class="status-icon pending">-</div>
+                <div class="status-text">settings/names 문서</div>
+                <div class="status-detail">합격자 명단 (20명)</div>
+            </div>
+            <div class="status-item" id="status-universities">
+                <div class="status-icon pending">-</div>
+                <div class="status-text">settings/universities 문서</div>
+                <div class="status-detail">대학 목록 (15개)</div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="seedBtn" onclick="runSeed()">
+            시드 데이터 추가 시작
+        </button>
+
+        <div class="log-box" id="logBox"></div>
+    </div>
+
+    <script type="module">
+        // Firebase SDK imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBkzXMrEwf4XKFPEJQgUWDhGcplTPWtPDI",
+            authDomain: "ddeumactors.firebaseapp.com",
+            projectId: "ddeumactors",
+            storageBucket: "ddeumactors.firebasestorage.app",
+            messagingSenderId: "1066282693101",
+            appId: "1:1066282693101:web:91e366814c81d83bb5b7e4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Seed Data
+        const seedData = {
+            hero: {
+                videoUrl: "",
+                title: "뜸 연기학원",
+                subtitle: "실전 중심 연기 교육으로 무대와 카메라 앞에서 통하는 연기를 만듭니다."
+            },
+            names: {
+                list: [
+                    "김서연",
+                    "이준호",
+                    "박지민",
+                    "최유진",
+                    "정민서",
+                    "강하늘",
+                    "윤소희",
+                    "임재현",
+                    "한예슬",
+                    "송민재",
+                    "오승아",
+                    "배진영",
+                    "신예은",
+                    "류현진",
+                    "홍수빈",
+                    "전소민",
+                    "조현우",
+                    "권나라",
+                    "안재홍",
+                    "문가영"
+                ]
+            },
+            universities: {
+                list: [
+                    "한국예술종합학교",
+                    "중앙대학교",
+                    "동국대학교",
+                    "한양대학교",
+                    "경희대학교",
+                    "성균관대학교",
+                    "단국대학교",
+                    "건국대학교",
+                    "숭실대학교",
+                    "국민대학교",
+                    "세종대학교",
+                    "명지대학교",
+                    "청주대학교",
+                    "용인대학교",
+                    "수원대학교"
+                ]
+            }
+        };
+
+        // UI Helper Functions
+        function updateStatus(id, status) {
+            const item = document.getElementById(id);
+            const icon = item.querySelector('.status-icon');
+            icon.className = 'status-icon ' + status;
+
+            switch(status) {
+                case 'loading':
+                    icon.textContent = '...';
+                    break;
+                case 'success':
+                    icon.textContent = '✓';
+                    break;
+                case 'error':
+                    icon.textContent = '✗';
+                    break;
+                default:
+                    icon.textContent = '-';
+            }
+        }
+
+        function addLog(message, type = 'info') {
+            const logBox = document.getElementById('logBox');
+            logBox.classList.add('visible');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry ' + type;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logBox.appendChild(entry);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // Main Seed Function
+        async function runSeed() {
+            const btn = document.getElementById('seedBtn');
+            btn.disabled = true;
+            btn.textContent = '추가 중...';
+
+            addLog('Firebase 시드 데이터 추가를 시작합니다.', 'info');
+
+            try {
+                // 1. Add hero settings
+                updateStatus('status-hero', 'loading');
+                addLog('settings/hero 문서 추가 중...', 'info');
+                await setDoc(doc(db, 'settings', 'hero'), seedData.hero);
+                updateStatus('status-hero', 'success');
+                addLog('settings/hero 문서 추가 완료!');
+
+                // 2. Add names settings
+                updateStatus('status-names', 'loading');
+                addLog('settings/names 문서 추가 중...', 'info');
+                await setDoc(doc(db, 'settings', 'names'), seedData.names);
+                updateStatus('status-names', 'success');
+                addLog('settings/names 문서 추가 완료!');
+
+                // 3. Add universities settings
+                updateStatus('status-universities', 'loading');
+                addLog('settings/universities 문서 추가 중...', 'info');
+                await setDoc(doc(db, 'settings', 'universities'), seedData.universities);
+                updateStatus('status-universities', 'success');
+                addLog('settings/universities 문서 추가 완료!');
+
+                addLog('모든 시드 데이터가 성공적으로 추가되었습니다!');
+                btn.textContent = '완료!';
+                btn.style.background = 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)';
+
+            } catch (error) {
+                console.error('Error:', error);
+                addLog(`오류 발생: ${error.message}`, 'error');
+                btn.textContent = '오류 발생 - 다시 시도';
+                btn.disabled = false;
+            }
+        }
+
+        // Make runSeed available globally
+        window.runSeed = runSeed;
+    </script>
+</body>
+</html>

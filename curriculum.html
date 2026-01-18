@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커리큘럼 - 뜸 연기학원</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><img src="images/logo.jpg" alt="뜸 연기학원" class="logo-img"></a>
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html" class="nav-link">홈</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">학원소개</a></div>
+        <div class="nav-item"><a href="teachers.html" class="nav-link">강사소개</a></div>
+        <div class="nav-item">
+          <a href="curriculum.html" class="nav-link active">커리큘럼</a>
+          <div class="dropdown">
+            <a href="curriculum.html" class="dropdown-link">커리큘럼</a>
+            <a href="class-videos.html" class="dropdown-link">클래스 영상</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="success-board.html" class="nav-link">합격자소개</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">상담신청</a></div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">홈</a>
+    <a href="about.html" class="mobile-nav-link">학원소개</a>
+    <a href="teachers.html" class="mobile-nav-link">강사소개</a>
+    <a href="curriculum.html" class="mobile-nav-link">커리큘럼</a>
+    <a href="success-board.html" class="mobile-nav-link">합격자소개</a>
+    <a href="contact.html" class="mobile-nav-link">상담신청</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Curriculum</span>
+      <h1 class="page-title">커리큘럼</h1>
+      <p class="page-breadcrumb"><a href="index.html">홈</a> / 커리큘럼</p>
+    </div>
+  </section>
+
+  <section class="section curriculum-section">
+    <div class="container">
+      <div class="curriculum-header">
+        <p class="curriculum-eyebrow">CURRICULUM</p>
+        <h2 class="curriculum-title">입시 커리큘럼 안내</h2>
+        <p class="curriculum-desc">실기 중심 훈련과 개인 맞춤 코칭으로, 무대·카메라 앞에서 통하는 연기를 만듭니다.</p>
+      </div>
+
+      <div class="curriculum-cards">
+        <!-- 입시반 -->
+        <article class="curriculum-card scroll-animate">
+          <span class="curriculum-badge">입시반</span>
+          <h3 class="curriculum-card-title">입시반 고등</h3>
+          <p class="curriculum-card-sub">재입 포함</p>
+
+          <div class="curriculum-meta">
+            <div class="curriculum-meta-item">
+              <div class="label">수업</div>
+              <div class="value">주 6회</div>
+            </div>
+            <div class="curriculum-meta-item">
+              <div class="label">총 시간</div>
+              <div class="value">72시간</div>
+            </div>
+            <div class="curriculum-meta-item price">
+              <div class="label">수강료</div>
+              <div class="value">95만원</div>
+            </div>
+          </div>
+
+          <div class="curriculum-points">
+            <div class="curriculum-points-title">핵심 포인트</div>
+            <ul class="curriculum-points-list">
+              <li>대학별 실기 유형 분석 및 전략 수립</li>
+              <li>자유·지정·즉흥·상황 연기 완성</li>
+              <li>개인 캐릭터·톤 확립 & 실전 안정감 강화</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 예비입시반 -->
+        <article class="curriculum-card scroll-animate">
+          <span class="curriculum-badge" style="background:rgba(6,182,212,0.15);border-color:rgba(6,182,212,0.3);color:#22d3ee;">예비입시반</span>
+          <h3 class="curriculum-card-title">예비입시반</h3>
+          <p class="curriculum-card-sub">고2 이하</p>
+
+          <div class="curriculum-meta">
+            <div class="curriculum-meta-item">
+              <div class="label">수업</div>
+              <div class="value">주 4회</div>
+            </div>
+            <div class="curriculum-meta-item">
+              <div class="label">총 시간</div>
+              <div class="value">32시간</div>
+            </div>
+            <div class="curriculum-meta-item price">
+              <div class="label">수강료</div>
+              <div class="value">50만원</div>
+            </div>
+          </div>
+
+          <div class="curriculum-points">
+            <div class="curriculum-points-title">핵심 포인트</div>
+            <ul class="curriculum-points-list">
+              <li>호흡·발성·발음·집중·상상력 기초 확립</li>
+              <li>장면 분석(상황·목표·행동) 습관화</li>
+              <li>리듬감·신체 표현 기반 강화</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 주말반 -->
+        <article class="curriculum-card scroll-animate">
+          <span class="curriculum-badge" style="background:rgba(6,182,212,0.15);border-color:rgba(6,182,212,0.3);color:#22d3ee;">주말반</span>
+          <h3 class="curriculum-card-title">주말 입시반</h3>
+          <p class="curriculum-card-sub">CLASS 3시간 · 정원 8명</p>
+
+          <div class="curriculum-meta">
+            <div class="curriculum-meta-item">
+              <div class="label">수업</div>
+              <div class="value">주 4회</div>
+            </div>
+            <div class="curriculum-meta-item">
+              <div class="label">총 시간</div>
+              <div class="value">48시간</div>
+            </div>
+            <div class="curriculum-meta-item price">
+              <div class="label">수강료</div>
+              <div class="value">75만원</div>
+            </div>
+          </div>
+
+          <div class="curriculum-points">
+            <div class="curriculum-points-title">핵심 포인트</div>
+            <ul class="curriculum-points-list">
+              <li>주말 집중 루틴으로 실기 핵심 역량 빠른 상승</li>
+              <li>독백·지정·제시·즉흥·구술 대학별 대응 강화</li>
+              <li>주특기/부특기 기초 → 개인 작품 완성</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- 공통 안내 -->
+      <div class="curriculum-footer scroll-animate" style="margin-top:40px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:30px;max-width:1100px;margin-left:auto;margin-right:auto;">
+        <h3 style="font-size:15px;font-weight:800;color:rgba(255,255,255,0.9);margin-bottom:16px;">공통 안내</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">상담/레벨</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.85);">레벨 테스트 후 반 편성 · 목표 대학/성향 기반 추천</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">점검</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.85);">월간 점검(옵션) · 모의 실기/면접(필요 시)</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">유의</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.85);">커리큘럼은 시즌/입시 트렌드에 따라 일부 조정될 수 있습니다</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <img src="images/logo.jpg" alt="뜸 연기학원" class="footer-logo-img">
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-hours">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2025 뜸 연기학원. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./shared/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

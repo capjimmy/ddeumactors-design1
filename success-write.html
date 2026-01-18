@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>합격자 발표 작성 - 뜸 연기학원</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .write-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .write-form .form-group {
+      margin-bottom: 24px;
+    }
+    .write-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #d4af37;
+    }
+    .write-form input[type="text"],
+    .write-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 15px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    .write-form input:focus,
+    .write-form textarea:focus {
+      outline: none;
+      border-color: #d4af37;
+    }
+    .write-form textarea {
+      min-height: 400px;
+      resize: vertical;
+    }
+    .form-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37, #b8960c);
+      color: #000;
+      border: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #888;
+      border: 1px solid #444;
+    }
+    .btn-secondary:hover {
+      border-color: #666;
+      color: #aaa;
+    }
+    .image-upload-area {
+      border: 2px dashed #333;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .image-upload-area:hover {
+      border-color: #d4af37;
+    }
+    .image-upload-area.dragover {
+      border-color: #d4af37;
+      background: rgba(212,175,55,0.05);
+    }
+    .image-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .image-preview-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .image-preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .image-preview-item .remove-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .access-denied {
+      text-align: center;
+      padding: 80px 20px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><img src="images/logo.jpg" alt="뜸 연기학원" class="logo-img"></a>
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html" class="nav-link">홈</a></div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link">학원소개</a>
+          <div class="dropdown">
+            <a href="about.html" class="dropdown-link">학원소개</a>
+            <a href="facility.html" class="dropdown-link">시설안내</a>
+            <a href="location.html" class="dropdown-link">오시는 길</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="teachers.html" class="nav-link">강사소개</a></div>
+        <div class="nav-item">
+          <a href="curriculum.html" class="nav-link">커리큘럼</a>
+          <div class="dropdown">
+            <a href="curriculum.html" class="dropdown-link">커리큘럼</a>
+            <a href="class-videos.html" class="dropdown-link">클래스 영상</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="success-board.html" class="nav-link active">합격자소개</a>
+          <div class="dropdown">
+            <a href="success-board.html" class="dropdown-link">합격자 발표</a>
+            <a href="success-videos.html" class="dropdown-link">합격자 영상</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">상담신청</a></div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">홈</a>
+    <a href="about.html" class="mobile-nav-link">학원소개</a>
+    <a href="teachers.html" class="mobile-nav-link">강사소개</a>
+    <a href="curriculum.html" class="mobile-nav-link">커리큘럼</a>
+    <a href="success-board.html" class="mobile-nav-link active">합격자소개</a>
+    <a href="contact.html" class="mobile-nav-link">상담신청</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Write Post</span>
+      <h1 class="page-title">합격자 발표 작성</h1>
+      <p class="page-breadcrumb"><a href="index.html">홈</a> / <a href="success-board.html">합격자 발표</a> / 글쓰기</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="write-container" id="writeContainer">
+      <div class="access-denied" id="accessDenied" style="display:none;">
+        <h2>접근 권한이 없습니다</h2>
+        <p>관리자만 글을 작성할 수 있습니다.</p>
+        <a href="success-board.html" class="btn btn-secondary" style="display:inline-block;margin-top:20px;">목록으로</a>
+      </div>
+
+      <form class="write-form" id="writeForm" style="display:none;">
+        <div class="form-group">
+          <label for="postTitle">제목</label>
+          <input type="text" id="postTitle" required placeholder="제목을 입력하세요">
+        </div>
+
+        <div class="form-group">
+          <label>이미지 첨부</label>
+          <div class="image-upload-area" id="imageUploadArea">
+            <p>클릭하거나 이미지를 드래그하여 업로드</p>
+            <p style="font-size:13px;color:#666;margin-top:8px;">최대 10개, 각 5MB 이하</p>
+          </div>
+          <input type="file" id="imageInput" multiple accept="image/*" style="display:none;">
+          <div class="image-preview-grid" id="imagePreviewGrid"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="postContent">내용</label>
+          <textarea id="postContent" required placeholder="내용을 입력하세요"></textarea>
+        </div>
+
+        <div class="form-buttons">
+          <a href="success-board.html" class="btn btn-secondary">취소</a>
+          <button type="submit" class="btn btn-primary" id="submitBtn">등록</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <img src="images/logo.jpg" alt="뜸 연기학원" class="footer-logo-img">
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-hours">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2025 뜸 연기학원. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./shared/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module">
+    import { db, storage, collection, addDoc, serverTimestamp, ref, uploadBytes, getDownloadURL } from './shared/firebase-config.js';
+
+    const writeForm = document.getElementById('writeForm');
+    const accessDenied = document.getElementById('accessDenied');
+    const imageUploadArea = document.getElementById('imageUploadArea');
+    const imageInput = document.getElementById('imageInput');
+    const imagePreviewGrid = document.getElementById('imagePreviewGrid');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let selectedFiles = [];
+
+    // Check admin access
+    if (window.isAdminLoggedIn && window.isAdminLoggedIn()) {
+      writeForm.style.display = 'block';
+    } else {
+      accessDenied.style.display = 'block';
+    }
+
+    // Image upload handling
+    imageUploadArea.addEventListener('click', () => imageInput.click());
+
+    imageUploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      imageUploadArea.classList.add('dragover');
+    });
+
+    imageUploadArea.addEventListener('dragleave', () => {
+      imageUploadArea.classList.remove('dragover');
+    });
+
+    imageUploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      imageUploadArea.classList.remove('dragover');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    imageInput.addEventListener('change', (e) => {
+      handleFiles(e.target.files);
+    });
+
+    function handleFiles(files) {
+      const newFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+
+      if (selectedFiles.length + newFiles.length > 10) {
+        alert('이미지는 최대 10개까지 첨부할 수 있습니다.');
+        return;
+      }
+
+      for (const file of newFiles) {
+        if (file.size > 5 * 1024 * 1024) {
+          alert(`${file.name}은(는) 5MB를 초과합니다.`);
+          continue;
+        }
+        selectedFiles.push(file);
+      }
+
+      renderPreviews();
+    }
+
+    function renderPreviews() {
+      imagePreviewGrid.innerHTML = '';
+
+      selectedFiles.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const div = document.createElement('div');
+          div.className = 'image-preview-item';
+          div.innerHTML = `
+            <img src="${e.target.result}" alt="Preview">
+            <button type="button" class="remove-btn" onclick="removeImage(${index})">×</button>
+          `;
+          imagePreviewGrid.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    window.removeImage = function(index) {
+      selectedFiles.splice(index, 1);
+      renderPreviews();
+    };
+
+    // Form submission
+    writeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('postTitle').value.trim();
+      const content = document.getElementById('postContent').value.trim();
+
+      if (!title || !content) {
+        alert('제목과 내용을 입력해주세요.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '업로드 중...';
+
+      try {
+        // Upload images first
+        const imageUrls = [];
+
+        for (const file of selectedFiles) {
+          const fileName = `success_posts/${Date.now()}_${file.name}`;
+          const storageRef = ref(storage, fileName);
+          await uploadBytes(storageRef, file);
+          const url = await getDownloadURL(storageRef);
+          imageUrls.push(url);
+        }
+
+        // Create post document
+        await addDoc(collection(db, 'success_posts'), {
+          title,
+          content,
+          images: imageUrls,
+          createdAt: serverTimestamp()
+        });
+
+        alert('게시글이 등록되었습니다.');
+        window.location.href = 'success-board.html';
+
+      } catch (error) {
+        console.error('Error creating post:', error);
+        alert('게시글 등록에 실패했습니다: ' + error.message);
+        submitBtn.disabled = false;
+        submitBtn.textContent = '등록';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시설안내 - 뜸 연기학원</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><img src="images/logo.jpg" alt="뜸 연기학원" class="logo-img"></a>
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html" class="nav-link">홈</a></div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link active">학원소개</a>
+          <div class="dropdown">
+            <a href="about.html" class="dropdown-link">학원소개</a>
+            <a href="facility.html" class="dropdown-link">시설안내</a>
+            <a href="location.html" class="dropdown-link">오시는 길</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="teachers.html" class="nav-link">강사소개</a></div>
+        <div class="nav-item"><a href="curriculum.html" class="nav-link">커리큘럼</a></div>
+        <div class="nav-item"><a href="success-board.html" class="nav-link">합격자소개</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">상담신청</a></div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">홈</a>
+    <a href="about.html" class="mobile-nav-link">학원소개</a>
+    <a href="teachers.html" class="mobile-nav-link">강사소개</a>
+    <a href="curriculum.html" class="mobile-nav-link">커리큘럼</a>
+    <a href="success-board.html" class="mobile-nav-link">합격자소개</a>
+    <a href="contact.html" class="mobile-nav-link">상담신청</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Facility</span>
+      <h1 class="page-title">시설안내</h1>
+      <p class="page-breadcrumb"><a href="index.html">홈</a> / <a href="about.html">학원소개</a> / 시설안내</p>
+    </div>
+  </section>
+
+  <section class="section facility-section">
+    <div class="container">
+      <div class="facility-grid" id="facilityGrid">
+        <div class="facility-card scroll-animate">
+          <img src="images/다운로드 (1).jpg" alt="시설 1">
+          <div class="facility-card-overlay"><span class="facility-card-title">연습실 1</span></div>
+        </div>
+        <div class="facility-card scroll-animate">
+          <img src="images/다운로드 (3).jpg" alt="시설 2">
+          <div class="facility-card-overlay"><span class="facility-card-title">연습실 2</span></div>
+        </div>
+        <div class="facility-card scroll-animate">
+          <img src="images/다운로드 (4).jpg" alt="시설 3">
+          <div class="facility-card-overlay"><span class="facility-card-title">무용실</span></div>
+        </div>
+        <div class="facility-card scroll-animate">
+          <img src="images/다운로드 (5).jpg" alt="시설 4">
+          <div class="facility-card-overlay"><span class="facility-card-title">대기실</span></div>
+        </div>
+        <div class="facility-card scroll-animate">
+          <img src="images/다운로드 (6).jpg" alt="시설 5">
+          <div class="facility-card-overlay"><span class="facility-card-title">상담실</span></div>
+        </div>
+        <div class="facility-card scroll-animate">
+          <img src="images/다운로드 (7).jpg" alt="시설 6">
+          <div class="facility-card-overlay"><span class="facility-card-title">로비</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <img src="images/logo.jpg" alt="뜸 연기학원" class="footer-logo-img">
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-hours">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2025 뜸 연기학원. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./shared/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

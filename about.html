@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="뜸 연기학원 - 설익은 연기가 아닌, 현장에서 통하는 연기를 만듭니다.">
+  <title>학원소개 - 뜸 연기학원</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="뜸 연기학원" class="logo-img">
+      </a>
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html" class="nav-link">홈</a></div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link active">학원소개</a>
+          <div class="dropdown">
+            <a href="about.html" class="dropdown-link">학원소개</a>
+            <a href="facility.html" class="dropdown-link">시설안내</a>
+            <a href="location.html" class="dropdown-link">오시는 길</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="teachers.html" class="nav-link">강사소개</a></div>
+        <div class="nav-item">
+          <a href="curriculum.html" class="nav-link">커리큘럼</a>
+          <div class="dropdown">
+            <a href="curriculum.html" class="dropdown-link">커리큘럼</a>
+            <a href="class-videos.html" class="dropdown-link">클래스 영상</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="success-board.html" class="nav-link">합격자소개</a>
+          <div class="dropdown">
+            <a href="success-board.html" class="dropdown-link">합격자 발표</a>
+            <a href="success-videos.html" class="dropdown-link">합격자 영상</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">상담신청</a></div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">홈</a>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">학원소개 ▾</a>
+      <div class="mobile-dropdown">
+        <a href="about.html" class="mobile-dropdown-link">학원소개</a>
+        <a href="facility.html" class="mobile-dropdown-link">시설안내</a>
+        <a href="location.html" class="mobile-dropdown-link">오시는 길</a>
+      </div>
+    </div>
+    <a href="teachers.html" class="mobile-nav-link">강사소개</a>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">커리큘럼 ▾</a>
+      <div class="mobile-dropdown">
+        <a href="curriculum.html" class="mobile-dropdown-link">커리큘럼</a>
+        <a href="class-videos.html" class="mobile-dropdown-link">클래스 영상</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">합격자소개 ▾</a>
+      <div class="mobile-dropdown">
+        <a href="success-board.html" class="mobile-dropdown-link">합격자 발표</a>
+        <a href="success-videos.html" class="mobile-dropdown-link">합격자 영상</a>
+      </div>
+    </div>
+    <a href="contact.html" class="mobile-nav-link">상담신청</a>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">About</span>
+      <h1 class="page-title">학원소개</h1>
+      <p class="page-breadcrumb">
+        <a href="index.html">홈</a> / 학원소개
+      </p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about-section">
+    <div class="container">
+      <!-- Manifesto -->
+      <div class="about-manifesto scroll-animate">
+        <p class="manifesto-line">
+          <span class="m-key">뜸</span>은 겉으로 드러나지 않지만,<br>
+          <span class="m-gold">결과를 바꾸는 시간</span>이다.
+        </p>
+        <p class="manifesto-line">
+          <span class="m-key">뜸</span>은 남의 속도가 아닌,<br>
+          <span class="m-gold">자기 속도를 지키는 일</span>이다.
+        </p>
+        <div class="manifesto-divider"></div>
+        <p class="manifesto-line manifesto-strong">
+          여기는 <span class="m-brand">뜸연기학원</span>이다.
+        </p>
+        <p class="manifesto-line">
+          설익은 연기가 아니라,<br>
+          <span class="m-gold">속이 있는 사람</span>을 키우는 곳이다.
+        </p>
+      </div>
+
+      <!-- About Image -->
+      <div class="about-image scroll-animate">
+        <img src="images/about.jpg" alt="뜸 연기학원">
+      </div>
+
+      <!-- Features Grid -->
+      <div class="features-grid">
+        <div class="feature-card scroll-animate">
+          <div class="feature-icon">🎭</div>
+          <h3 class="feature-title">실전 중심 교육</h3>
+          <p class="feature-text">무대와 카메라 앞에서 바로 통하는 연기를 훈련합니다.</p>
+        </div>
+        <div class="feature-card scroll-animate">
+          <div class="feature-icon">👤</div>
+          <h3 class="feature-title">개인 맞춤 코칭</h3>
+          <p class="feature-text">각자의 성향과 목표에 맞춘 1:1 피드백을 제공합니다.</p>
+        </div>
+        <div class="feature-card scroll-animate">
+          <div class="feature-icon">🏆</div>
+          <h3 class="feature-title">높은 합격률</h3>
+          <p class="feature-text">주요 대학 연극영화과 합격 실적을 자랑합니다.</p>
+        </div>
+        <div class="feature-card scroll-animate">
+          <div class="feature-icon">🎬</div>
+          <h3 class="feature-title">현장 경험 강사진</h3>
+          <p class="feature-text">드라마, 영화, 연극 현장 경험의 전문 강사진이 지도합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <img src="images/logo.jpg" alt="뜸 연기학원" class="footer-logo-img">
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-hours">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2025 뜸 연기학원. All rights reserved.</div>
+        <div class="footer-links"><a href="#">개인정보처리방침</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./shared/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

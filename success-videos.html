@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>합격자 영상 - 뜸 연기학원</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><img src="images/logo.jpg" alt="뜸 연기학원" class="logo-img"></a>
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html" class="nav-link">홈</a></div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link">학원소개</a>
+          <div class="dropdown">
+            <a href="about.html" class="dropdown-link">학원소개</a>
+            <a href="facility.html" class="dropdown-link">시설안내</a>
+            <a href="location.html" class="dropdown-link">오시는 길</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="teachers.html" class="nav-link">강사소개</a></div>
+        <div class="nav-item">
+          <a href="curriculum.html" class="nav-link">커리큘럼</a>
+          <div class="dropdown">
+            <a href="curriculum.html" class="dropdown-link">커리큘럼</a>
+            <a href="class-videos.html" class="dropdown-link">클래스 영상</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="success-board.html" class="nav-link active">합격자소개</a>
+          <div class="dropdown">
+            <a href="success-board.html" class="dropdown-link">합격자 발표</a>
+            <a href="success-videos.html" class="dropdown-link">합격자 영상</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">상담신청</a></div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">홈</a>
+    <a href="about.html" class="mobile-nav-link">학원소개</a>
+    <a href="teachers.html" class="mobile-nav-link">강사소개</a>
+    <a href="curriculum.html" class="mobile-nav-link">커리큘럼</a>
+    <a href="success-board.html" class="mobile-nav-link">합격자소개</a>
+    <a href="success-videos.html" class="mobile-nav-link active">합격자 영상</a>
+    <a href="contact.html" class="mobile-nav-link">상담신청</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Success Videos</span>
+      <h1 class="page-title">합격자 영상</h1>
+      <p class="page-breadcrumb"><a href="index.html">홈</a> / <a href="success-board.html">합격자소개</a> / 합격자 영상</p>
+    </div>
+  </section>
+
+  <section class="section videos-section">
+    <div class="container">
+      <!-- Admin: Add Video Button -->
+      <div class="board-header" style="display:flex;justify-content:flex-end;margin-bottom:30px;">
+        <button id="addVideoBtn" class="btn btn-primary" style="display:none;">영상 추가</button>
+      </div>
+
+      <div class="videos-grid" id="videosGrid">
+        <div class="loading-text">영상을 불러오는 중...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add Video Modal -->
+  <div class="modal" id="addVideoModal" style="display:none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <h2 class="modal-title">합격자 영상 추가</h2>
+      <form id="addVideoForm">
+        <div class="form-group">
+          <label for="videoTitle">영상 제목</label>
+          <input type="text" id="videoTitle" required>
+        </div>
+        <div class="form-group">
+          <label for="videoUrl">YouTube URL</label>
+          <input type="url" id="videoUrl" required placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+        <div class="form-group">
+          <label for="videoDesc">설명 (선택)</label>
+          <textarea id="videoDesc" rows="3"></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">취소</button>
+          <button type="submit" class="btn btn-primary">추가</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <img src="images/logo.jpg" alt="뜸 연기학원" class="footer-logo-img">
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-hours">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2025 뜸 연기학원. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./shared/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module">
+    import { db, collection, getDocs, addDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from './shared/firebase-config.js';
+
+    const videosGrid = document.getElementById('videosGrid');
+    const addVideoBtn = document.getElementById('addVideoBtn');
+    const addVideoModal = document.getElementById('addVideoModal');
+    const addVideoForm = document.getElementById('addVideoForm');
+
+    // Show add button for admin
+    if (window.isAdminLoggedIn && window.isAdminLoggedIn()) {
+      addVideoBtn.style.display = 'block';
+      addVideoBtn.addEventListener('click', () => {
+        addVideoModal.style.display = 'flex';
+      });
+    }
+
+    window.closeModal = function() {
+      addVideoModal.style.display = 'none';
+      addVideoForm.reset();
+    };
+
+    // Extract YouTube video ID
+    function getYouTubeId(url) {
+      const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+      const match = url.match(regex);
+      return match ? match[1] : null;
+    }
+
+    // Load videos from Firestore
+    async function loadVideos() {
+      try {
+        const q = query(collection(db, 'success_videos'), orderBy('createdAt', 'desc'));
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+          videosGrid.innerHTML = '<p class="no-data">등록된 영상이 없습니다.</p>';
+          return;
+        }
+
+        const isAdmin = window.isAdminLoggedIn && window.isAdminLoggedIn();
+        let html = '';
+
+        snapshot.forEach(docSnap => {
+          const data = docSnap.data();
+          const videoId = getYouTubeId(data.url);
+          const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '';
+
+          html += `
+            <div class="video-card">
+              <div class="video-thumbnail" onclick="window.open('${escapeHTML(data.url)}', '_blank')">
+                <img src="${thumbnail}" alt="${escapeHTML(data.title)}" onerror="this.src='https://via.placeholder.com/480x270?text=Video'">
+                <div class="play-icon">▶</div>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">${escapeHTML(data.title)}</h3>
+                ${data.description ? `<p class="video-desc">${escapeHTML(data.description)}</p>` : ''}
+                ${isAdmin ? `<button class="btn-delete" onclick="deleteVideo('${docSnap.id}')">삭제</button>` : ''}
+              </div>
+            </div>
+          `;
+        });
+
+        videosGrid.innerHTML = html;
+      } catch (error) {
+        console.error('Error loading videos:', error);
+        videosGrid.innerHTML = '<p class="error-text">영상을 불러오는데 실패했습니다.</p>';
+      }
+    }
+
+    // Add video
+    addVideoForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('videoTitle').value.trim();
+      const url = document.getElementById('videoUrl').value.trim();
+      const description = document.getElementById('videoDesc').value.trim();
+
+      if (!getYouTubeId(url)) {
+        alert('올바른 YouTube URL을 입력해주세요.');
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, 'success_videos'), {
+          title,
+          url,
+          description,
+          createdAt: serverTimestamp()
+        });
+
+        closeModal();
+        loadVideos();
+      } catch (error) {
+        console.error('Error adding video:', error);
+        alert('영상 추가에 실패했습니다.');
+      }
+    });
+
+    // Delete video
+    window.deleteVideo = async function(id) {
+      if (!confirm('이 영상을 삭제하시겠습니까?')) return;
+
+      try {
+        await deleteDoc(doc(db, 'success_videos', id));
+        loadVideos();
+      } catch (error) {
+        console.error('Error deleting video:', error);
+        alert('삭제에 실패했습니다.');
+      }
+    };
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    loadVideos();
+  </script>
+</body>
+</html>

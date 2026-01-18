@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="뜸 연기학원 - 실전 중심 연기 교육으로 무대와 카메라 앞에서 통하는 연기를 만듭니다.">
+  <title>뜸 연기학원</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="뜸 연기학원" class="logo-img">
+      </a>
+
+      <nav class="nav">
+        <div class="nav-item">
+          <a href="index.html" class="nav-link active">홈</a>
+        </div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link">학원소개</a>
+          <div class="dropdown">
+            <a href="about.html" class="dropdown-link">학원소개</a>
+            <a href="facility.html" class="dropdown-link">시설안내</a>
+            <a href="location.html" class="dropdown-link">오시는 길</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="teachers.html" class="nav-link">강사소개</a>
+        </div>
+        <div class="nav-item">
+          <a href="curriculum.html" class="nav-link">커리큘럼</a>
+          <div class="dropdown">
+            <a href="curriculum.html" class="dropdown-link">커리큘럼</a>
+            <a href="class-videos.html" class="dropdown-link">클래스 영상</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="success-board.html" class="nav-link">합격자소개</a>
+          <div class="dropdown">
+            <a href="success-board.html" class="dropdown-link">합격자 발표</a>
+            <a href="success-videos.html" class="dropdown-link">합격자 영상</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html" class="nav-link">상담신청</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">홈</a>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">학원소개 ▾</a>
+      <div class="mobile-dropdown">
+        <a href="about.html" class="mobile-dropdown-link">학원소개</a>
+        <a href="facility.html" class="mobile-dropdown-link">시설안내</a>
+        <a href="location.html" class="mobile-dropdown-link">오시는 길</a>
+      </div>
+    </div>
+    <a href="teachers.html" class="mobile-nav-link">강사소개</a>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">커리큘럼 ▾</a>
+      <div class="mobile-dropdown">
+        <a href="curriculum.html" class="mobile-dropdown-link">커리큘럼</a>
+        <a href="class-videos.html" class="mobile-dropdown-link">클래스 영상</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">합격자소개 ▾</a>
+      <div class="mobile-dropdown">
+        <a href="success-board.html" class="mobile-dropdown-link">합격자 발표</a>
+        <a href="success-videos.html" class="mobile-dropdown-link">합격자 영상</a>
+      </div>
+    </div>
+    <a href="contact.html" class="mobile-nav-link">상담신청</a>
+  </nav>
+
+  <!-- Hero Section with Video -->
+  <section class="hero">
+    <div class="hero-video-wrapper">
+      <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
+        <source src="" type="video/mp4">
+      </video>
+      <div class="hero-overlay">
+        <div class="hero-text-content">
+          <h1 id="heroTitle" class="hero-title"></h1>
+          <p id="heroSubtitle" class="hero-subtitle"></p>
+        </div>
+      </div>
+    </div>
+    <!-- Admin Edit Button (visible only in admin mode) -->
+    <button class="hero-edit-btn" id="heroEditBtn" style="display:none;">히어로 편집</button>
+  </section>
+
+  <!-- Hero Edit Modal -->
+  <div class="modal" id="heroEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeHeroModal()"></div>
+    <div class="modal-content">
+      <h3 class="modal-title">히어로 영상 & 문구 편집</h3>
+      <form id="heroEditForm">
+        <div class="form-group">
+          <label>영상 URL (YouTube 또는 직접 URL)</label>
+          <input type="text" id="heroVideoUrl" placeholder="https://..." required>
+        </div>
+        <div class="form-group">
+          <label>영상 파일 업로드</label>
+          <input type="file" id="heroVideoFile" accept="video/*">
+          <small style="color: var(--color-gray); font-size: 12px;">또는 직접 영상 파일을 업로드하세요</small>
+        </div>
+        <div class="form-group">
+          <label>메인 타이틀</label>
+          <input type="text" id="heroTitleInput" placeholder="메인 문구를 입력하세요">
+        </div>
+        <div class="form-group">
+          <label>서브 타이틀</label>
+          <input type="text" id="heroSubtitleInput" placeholder="서브 문구를 입력하세요">
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeHeroModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Names Edit Modal -->
+  <div class="modal" id="namesEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeNamesModal()"></div>
+    <div class="modal-content modal-large">
+      <h3 class="modal-title">합격자 명단 편집</h3>
+      <p class="modal-help">한 줄에 한 명씩 입력하세요</p>
+      <form id="namesEditForm">
+        <div class="form-group">
+          <textarea id="namesTextarea" rows="15" placeholder="홍길동&#10;김철수&#10;이영희&#10;..."></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeNamesModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Universities Edit Modal -->
+  <div class="modal" id="univEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeUnivModal()"></div>
+    <div class="modal-content modal-large">
+      <h3 class="modal-title">주요 합격 대학 편집</h3>
+      <p class="modal-help">한 줄에 한 대학씩 입력하세요</p>
+      <form id="univEditForm">
+        <div class="form-group">
+          <textarea id="univTextarea" rows="15" placeholder="서울대학교&#10;한국예술종합학교&#10;중앙대학교&#10;..."></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeUnivModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-grid" id="statsGrid">
+        <div class="loading">데이터 로딩 중</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manifesto Section -->
+  <section class="section manifesto-section">
+    <div class="container">
+      <div class="manifesto-content scroll-animate">
+        <p class="manifesto-line">
+          <span class="m-key">뜸</span>은 겉으로 드러나지 않지만,<br>
+          <span class="m-gold">결과를 바꾸는 시간</span>이다.
+        </p>
+        <p class="manifesto-line">
+          <span class="m-key">뜸</span>은 남의 속도가 아닌,<br>
+          <span class="m-gold">자기 속도를 지키는 일</span>이다.
+        </p>
+        <div class="manifesto-divider"></div>
+        <p class="manifesto-line manifesto-strong">
+          여기는 <span class="m-brand">뜸연기학원</span>이다.
+        </p>
+        <p class="manifesto-line">
+          설익은 연기가 아니라,<br>
+          <span class="m-gold">속이 있는 사람</span>을 키우는 곳이다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rolling Names Section -->
+  <section class="section rolling-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Accepted Students</span>
+        <h2 class="section-title">합격자 명단</h2>
+        <button class="admin-edit-section-btn" id="editNamesBtn" style="display:none;">명단 편집</button>
+      </div>
+      <div class="rolling-body">
+        <ul id="nameGrid" class="name-grid"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Universities Section -->
+  <section class="section univ-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Universities</span>
+        <h2 class="section-title">주요 합격 대학</h2>
+        <p class="section-desc">실전 중심 커리큘럼으로 이어진 결과</p>
+        <button class="admin-edit-section-btn" id="editUnivBtn" style="display:none;">대학 편집</button>
+      </div>
+      <ul id="univGrid" class="univ-grid"></ul>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-content scroll-animate">
+        <h2 class="cta-title">지금 상담을 신청하세요</h2>
+        <p class="cta-desc">레벨 테스트 후 맞춤 커리큘럼을 안내해 드립니다.</p>
+        <a href="contact.html" class="btn btn-primary">상담 신청하기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <img src="images/logo.jpg" alt="뜸 연기학원" class="footer-logo-img">
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-hours">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2025 뜸 연기학원. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#">개인정보처리방침</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./shared/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module" src="js/home.js"></script>
+</body>
+</html>

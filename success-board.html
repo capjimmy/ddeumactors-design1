@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>합격자 발표 - 뜸 연기학원</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><img src="images/logo.jpg" alt="뜸 연기학원" class="logo-img"></a>
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html" class="nav-link">홈</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">학원소개</a></div>
+        <div class="nav-item"><a href="teachers.html" class="nav-link">강사소개</a></div>
+        <div class="nav-item"><a href="curriculum.html" class="nav-link">커리큘럼</a></div>
+        <div class="nav-item">
+          <a href="success-board.html" class="nav-link active">합격자소개</a>
+          <div class="dropdown">
+            <a href="success-board.html" class="dropdown-link">합격자 발표</a>
+            <a href="success-videos.html" class="dropdown-link">합격자 영상</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">상담신청</a></div>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">홈</a>
+    <a href="about.html" class="mobile-nav-link">학원소개</a>
+    <a href="teachers.html" class="mobile-nav-link">강사소개</a>
+    <a href="curriculum.html" class="mobile-nav-link">커리큘럼</a>
+    <a href="success-board.html" class="mobile-nav-link">합격자소개</a>
+    <a href="contact.html" class="mobile-nav-link">상담신청</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Success Stories</span>
+      <h1 class="page-title">합격자 발표</h1>
+      <p class="page-breadcrumb"><a href="index.html">홈</a> / 합격자 발표</p>
+    </div>
+  </section>
+
+  <section class="section success-section">
+    <div class="container">
+      <div class="board-container">
+        <!-- Admin: Write Button -->
+        <div class="board-header" style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+          <button id="writeBtn" class="btn btn-primary" style="display:none;">글쓰기</button>
+        </div>
+
+        <table class="board-table">
+          <thead>
+            <tr>
+              <th style="width:60px;">번호</th>
+              <th>제목</th>
+              <th style="width:120px;">작성일</th>
+            </tr>
+          </thead>
+          <tbody id="boardList">
+            <tr><td colspan="3" class="loading">데이터 로딩 중</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="board-pagination" id="pagination" style="margin-top:30px;display:flex;justify-content:center;gap:8px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <img src="images/logo.jpg" alt="뜸 연기학원" class="footer-logo-img">
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-hours">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2025 뜸 연기학원. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./shared/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module">
+    import { db, collection, getDocs, query, orderBy } from './shared/firebase-config.js';
+
+    const boardList = document.getElementById('boardList');
+    const writeBtn = document.getElementById('writeBtn');
+
+    // Show write button for admin
+    if (window.isAdminLoggedIn && window.isAdminLoggedIn()) {
+      writeBtn.style.display = 'block';
+      writeBtn.addEventListener('click', () => {
+        window.location.href = 'success-write.html';
+      });
+    }
+
+    // Load posts from Firestore
+    async function loadPosts() {
+      try {
+        const q = query(collection(db, 'success_posts'), orderBy('createdAt', 'desc'));
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+          boardList.innerHTML = '<tr><td colspan="3" style="text-align:center;padding:40px;color:#888;">등록된 게시글이 없습니다.</td></tr>';
+          return;
+        }
+
+        let html = '';
+        let index = snapshot.size;
+
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const date = data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString('ko-KR') : '-';
+
+          html += `
+            <tr>
+              <td>${index--}</td>
+              <td><a href="success-view.html?id=${doc.id}" class="post-title">${escapeHTML(data.title)}</a></td>
+              <td>${date}</td>
+            </tr>
+          `;
+        });
+
+        boardList.innerHTML = html;
+      } catch (error) {
+        console.error('Error loading posts:', error);
+        boardList.innerHTML = '<tr><td colspan="3" style="text-align:center;padding:40px;color:#c00;">데이터 로딩 실패</td></tr>';
+      }
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>

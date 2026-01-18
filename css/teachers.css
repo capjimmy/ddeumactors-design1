@@ -1,0 +1,239 @@
+/* ===============================================
+   Design 1: Classic Black & Gold - Teachers Page
+   =============================================== */
+
+.teachers-section {
+  padding: 80px 0;
+  background: var(--color-black);
+}
+
+.teachers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Teacher Card */
+.teacher-card {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 40px;
+  background: var(--color-black-light);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 30px;
+  transition: all var(--transition);
+}
+
+.teacher-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.teacher-card.reverse {
+  grid-template-columns: 1fr 400px;
+}
+
+.teacher-card.reverse .teacher-image {
+  order: 2;
+}
+
+.teacher-card.reverse .teacher-content {
+  order: 1;
+}
+
+/* Teacher Image */
+.teacher-image {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 500px;
+}
+
+.teacher-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.teacher-card:hover .teacher-image img {
+  transform: scale(1.03);
+}
+
+.teacher-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.teacher-role-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid var(--color-gold);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+/* Teacher Content */
+.teacher-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.teacher-header {
+  margin-bottom: 30px;
+}
+
+.teacher-role {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.teacher-name {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--color-white);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.teacher-intro {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-gray);
+}
+
+/* Teacher Details */
+.teacher-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.detail-block {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.detail-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+.detail-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-gray-light);
+}
+
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-gray-light);
+}
+
+.detail-list li span {
+  flex-shrink: 0;
+  min-width: 80px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .teacher-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .teacher-card.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-card.reverse .teacher-image,
+  .teacher-card.reverse .teacher-content {
+    order: initial;
+  }
+
+  .teacher-image {
+    height: 400px;
+  }
+
+  .teacher-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .teachers-section {
+    padding: 60px 0;
+  }
+
+  .teachers-list {
+    gap: 40px;
+  }
+
+  .teacher-card {
+    padding: 20px;
+  }
+
+  .teacher-image {
+    height: 350px;
+  }
+
+  .teacher-name {
+    font-size: 28px;
+  }
+}
+
+/* Admin Mode Styles */
+body.admin-mode .teacher-card {
+  position: relative;
+}
+
+body.admin-mode .teacher-card::after {
+  content: '편집';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background: var(--color-gold);
+  color: var(--color-black);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+body.admin-mode .teacher-card:hover::after {
+  opacity: 1;
+}
