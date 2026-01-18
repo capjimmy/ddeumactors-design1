@@ -213,27 +213,3 @@
   }
 }
 
-/* Admin Mode Styles */
-body.admin-mode .teacher-card {
-  position: relative;
-}
-
-body.admin-mode .teacher-card::after {
-  content: '편집';
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 8px 16px;
-  background: var(--color-gold);
-  color: var(--color-black);
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-
-body.admin-mode .teacher-card:hover::after {
-  opacity: 1;
-}
