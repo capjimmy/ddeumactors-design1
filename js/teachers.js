@@ -149,8 +149,6 @@ function renderTeacherCard(teacher, index) {
         <div class="teacher-overlay">
           <span class="teacher-role-badge">${escapeHTML(teacher.role)}</span>
         </div>
-        <button class="teacher-edit-btn" data-index="${index}" style="display:none;">편집</button>
-        <button class="teacher-delete-btn" data-index="${index}" style="display:none;">삭제</button>
       </div>
       <div class="teacher-content">
         <div class="teacher-header">
@@ -196,11 +194,6 @@ function updateAdminButtonsVisibility() {
   if (addBtn) {
     addBtn.style.display = isAdmin ? 'inline-block' : 'none';
   }
-
-  // Show/hide edit/delete buttons on each card
-  document.querySelectorAll('.teacher-edit-btn, .teacher-delete-btn').forEach(btn => {
-    btn.style.display = isAdmin ? 'block' : 'none';
-  });
 }
 
 // Load teachers from Firebase
@@ -417,22 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (addBtn) {
     addBtn.addEventListener('click', () => openEditModal(-1));
   }
-
-  // Event delegation for edit/delete buttons
-  document.getElementById('teachersList')?.addEventListener('click', (e) => {
-    const editBtn = e.target.closest('.teacher-edit-btn');
-    const deleteBtn = e.target.closest('.teacher-delete-btn');
-
-    if (editBtn) {
-      const index = parseInt(editBtn.dataset.index);
-      openEditModal(index);
-    }
-
-    if (deleteBtn) {
-      const index = parseInt(deleteBtn.dataset.index);
-      deleteTeacher(index);
-    }
-  });
 
   // Watch for admin mode changes
   const observer = new MutationObserver(() => {
