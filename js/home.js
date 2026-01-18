@@ -3,7 +3,7 @@
    =============================================== */
 
 // Firebase imports for hero video
-import { db, storage, doc, getDoc, setDoc, ref, uploadBytes, getDownloadURL } from '../../shared/firebase-config.js';
+import { db, storage, doc, getDoc, setDoc, ref, uploadBytes, getDownloadURL } from './shared/firebase-config.js';
 
 // Google Sheets URLs
 const SHEET_URLS = {
@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initHeroAdmin();
   initNamesAdmin();
   initUnivAdmin();
+  initStatsAdmin();
 });
 
 // Load Hero Video and Text from Firebase
@@ -171,25 +172,41 @@ function isUnivHeader(cell) {
   return s === '대학' || s === '대학명' || s === 'university';
 }
 
-// Load Stats
+// Load Stats - Try Firebase first, then Google Sheets
 async function loadStats() {
   const grid = document.getElementById('statsGrid');
   if (!grid) return;
 
   try {
-    const res = await fetch(SHEET_URLS.metrics, { cache: 'no-store' });
-    const csv = await res.text();
-    let rows = parseCSV(csv);
+    // Try Firebase first
+    const statsRef = doc(db, 'settings', 'stats');
+    const statsSnap = await getDoc(statsRef);
 
-    rows = rows.map(r => [(r[0] || '').trim(), (r[1] || '').trim()]).filter(r => r[0] || r[1]);
+    let stats = [];
 
-    if (rows.length && isHeaderRow(rows[0][0], rows[0][1])) {
-      rows = rows.slice(1);
+    if (statsSnap.exists() && statsSnap.data().items && statsSnap.data().items.length > 0) {
+      stats = statsSnap.data().items;
+    } else {
+      // Fallback to Google Sheets
+      const res = await fetch(SHEET_URLS.metrics, { cache: 'no-store' });
+      const csv = await res.text();
+      let rows = parseCSV(csv);
+
+      rows = rows.map(r => [(r[0] || '').trim(), (r[1] || '').trim()]).filter(r => r[0] || r[1]);
+
+      if (rows.length && isHeaderRow(rows[0][0], rows[0][1])) {
+        rows = rows.slice(1);
+      }
+
+      stats = rows.slice(0, 4).map(([label, value]) => ({ label, value }));
     }
+
+    // Store for editing
+    window.currentStats = [...stats];
 
     grid.innerHTML = '';
 
-    rows.slice(0, 4).forEach(([label, value]) => {
+    stats.forEach(({ label, value }) => {
       if (!label && !value) return;
 
       const card = document.createElement('div');
@@ -484,5 +501,116 @@ function initUnivAdmin() {
 // Close univ modal
 window.closeUnivModal = function() {
   const modal = document.getElementById('univEditModal');
+  if (modal) modal.style.display = 'none';
+};
+
+// ========== Stats Admin Functions ==========
+function initStatsAdmin() {
+  const editBtn = document.getElementById('editStatsBtn');
+  const modal = document.getElementById('statsEditModal');
+  const form = document.getElementById('statsEditForm');
+  const inputsContainer = document.getElementById('statsInputs');
+
+  if (!editBtn || !modal || !form || !inputsContainer) return;
+
+  // Check admin mode
+  function checkAdminMode() {
+    const isAdmin = document.body.classList.contains('admin-mode');
+    editBtn.style.display = isAdmin ? 'inline-block' : 'none';
+  }
+
+  checkAdminMode();
+
+  const observer = new MutationObserver(() => checkAdminMode());
+  observer.observe(document.body, { attributes: true });
+
+  // Generate input fields
+  function generateInputs(stats) {
+    inputsContainer.innerHTML = '';
+    for (let i = 0; i < 4; i++) {
+      const stat = stats[i] || { label: '', value: '' };
+      inputsContainer.innerHTML += `
+        <div class="form-group" style="display:flex;gap:12px;margin-bottom:16px;">
+          <div style="flex:1;">
+            <label>항목 ${i + 1} 라벨</label>
+            <input type="text" class="stat-label-input" placeholder="예: 입시합격률" value="${escapeHTML(stat.label || '')}">
+          </div>
+          <div style="flex:1;">
+            <label>값</label>
+            <input type="text" class="stat-value-input" placeholder="예: 95%" value="${escapeHTML(stat.value || '')}">
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // Edit button click
+  editBtn.addEventListener('click', async () => {
+    if (window.currentStats && window.currentStats.length > 0) {
+      generateInputs(window.currentStats);
+    } else {
+      // Try to load from Firebase
+      try {
+        const statsRef = doc(db, 'settings', 'stats');
+        const statsSnap = await getDoc(statsRef);
+        if (statsSnap.exists() && statsSnap.data().items) {
+          generateInputs(statsSnap.data().items);
+        } else {
+          generateInputs([]);
+        }
+      } catch (e) {
+        console.error('Failed to load stats:', e);
+        generateInputs([]);
+      }
+    }
+    modal.style.display = 'flex';
+  });
+
+  // Form submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = '저장 중...';
+
+    try {
+      const labelInputs = form.querySelectorAll('.stat-label-input');
+      const valueInputs = form.querySelectorAll('.stat-value-input');
+      const items = [];
+
+      for (let i = 0; i < labelInputs.length; i++) {
+        const label = labelInputs[i].value.trim();
+        const value = valueInputs[i].value.trim();
+        if (label || value) {
+          items.push({ label, value });
+        }
+      }
+
+      // Save to Firebase
+      const statsRef = doc(db, 'settings', 'stats');
+      await setDoc(statsRef, {
+        items: items,
+        updatedAt: new Date()
+      });
+
+      // Refresh display
+      await loadStats();
+
+      closeStatsModal();
+      alert('저장되었습니다.');
+    } catch (error) {
+      console.error('Failed to save stats:', error);
+      alert('저장에 실패했습니다: ' + error.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '저장';
+    }
+  });
+}
+
+// Close stats modal
+window.closeStatsModal = function() {
+  const modal = document.getElementById('statsEditModal');
   if (modal) modal.style.display = 'none';
 };

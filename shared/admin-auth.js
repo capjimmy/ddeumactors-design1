@@ -4,7 +4,7 @@
 
 const ADMIN_CREDENTIALS = {
   username: 'ddeumadmin',
-  password: 'Ddeum@2025!'
+  password: 'Ddeum@2026!'
 };
 
 const ADMIN_SESSION_KEY = 'ddeum_admin_session';
