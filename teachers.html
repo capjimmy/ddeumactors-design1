@@ -177,6 +177,100 @@
   </div>
 
   <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(4px);
+    }
+    .modal-content {
+      position: relative;
+      background: var(--color-black-light, #141414);
+      border: 1px solid var(--color-border, #2a2a2a);
+      border-radius: 16px;
+      padding: 40px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-content.modal-large {
+      max-width: 600px;
+    }
+    .modal-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--color-gold, #d4af37);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .modal .form-group {
+      margin-bottom: 20px;
+    }
+    .modal label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--color-gray-light, #aaa);
+    }
+    .modal input,
+    .modal textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--color-border, #2a2a2a);
+      border-radius: 8px;
+      background: var(--color-black, #0a0a0a);
+      color: #fff;
+      font-size: 15px;
+      font-family: inherit;
+    }
+    .modal input:focus,
+    .modal textarea:focus {
+      outline: none;
+      border-color: var(--color-gold, #d4af37);
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
+    .modal .btn-secondary {
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid var(--color-border, #2a2a2a);
+      border-radius: 8px;
+      color: var(--color-gray-light, #aaa);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .modal .btn-secondary:hover {
+      border-color: #666;
+      color: #fff;
+    }
+    .modal .btn-primary {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--color-gold, #d4af37), var(--color-gold-dark, #b8960c));
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .modal .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Teacher Edit/Delete Buttons */
     .teacher-edit-btn, .teacher-delete-btn {
       position: absolute;
       z-index: 10;
@@ -190,7 +284,7 @@
     .teacher-edit-btn {
       bottom: 50px;
       right: 10px;
-      background: var(--color-gold);
+      background: var(--color-gold, #d4af37);
       color: #000;
     }
     .teacher-delete-btn {
