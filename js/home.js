@@ -40,11 +40,22 @@ async function loadHeroContent() {
     if (heroSnap.exists()) {
       const data = heroSnap.data();
 
-      // Set video source
-      if (data.videoUrl) {
-        video.querySelector('source').src = data.videoUrl;
+      // Set video source with autoplay attributes
+      if (data.videoUrl && video) {
+        // Ensure video attributes for autoplay
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.autoplay = true;
+
+        // Set source directly on video element
+        video.src = data.videoUrl;
         video.load();
-        video.play().catch(e => console.log('Video autoplay prevented'));
+
+        // Try to play after load
+        video.addEventListener('loadeddata', function() {
+          video.play().catch(e => console.log('Video autoplay prevented:', e));
+        }, { once: true });
       }
 
       // Set text overlay

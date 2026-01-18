@@ -220,6 +220,17 @@ function addAdminStyles() {
     body.admin-mode {
       padding-top: 40px;
     }
+    body.admin-mode .header {
+      top: 40px;
+    }
+    body.admin-mode .mobile-nav {
+      top: calc(40px + 80px);
+    }
+    @media (max-width: 768px) {
+      body.admin-mode .mobile-nav {
+        top: calc(40px + 64px);
+      }
+    }
 
     /* Hidden admin trigger - now on footer logo */
     .footer-logo-img {
