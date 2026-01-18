@@ -2,15 +2,8 @@
    뜸 연기학원 - Home Page JavaScript
    =============================================== */
 
-// Firebase imports for hero video
+// Firebase imports
 import { db, storage, doc, getDoc, setDoc, ref, uploadBytes, getDownloadURL } from '../shared/firebase-config.js';
-
-// Google Sheets URLs
-const SHEET_URLS = {
-  metrics: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH5yGKWWaPSmqvWJJtbR2yNtVU4EaYoIyXReUWaWIllKPorVY1Q2AEfBYoN3JBYxDUq-vaN0Pwe973/pub?gid=2046441648&single=true&output=csv",
-  names: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH5yGKWWaPSmqvWJJtbR2yNtVU4EaYoIyXReUWaWIllKPorVY1Q2AEfBYoN3JBYxDUq-vaN0Pwe973/pub?gid=0&single=true&output=csv",
-  universities: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH5yGKWWaPSmqvWJJtbR2yNtVU4EaYoIyXReUWaWIllKPorVY1Q2AEfBYoN3JBYxDUq-vaN0Pwe973/pub?gid=1842660855&single=true&output=csv"
-};
 
 const COLS = 4;
 const VISIBLE_ROWS = 5;
@@ -172,24 +165,35 @@ window.closeHeroModal = function() {
   }
 };
 
-// Check if header row
-function isHeaderRow(label, value) {
-  const s = (String(label || '') + ' ' + String(value || '')).toLowerCase();
-  return s.includes('label') || s.includes('value') || s.includes('항목') || s.includes('값');
-}
+// Default data (used when Firebase is empty)
+const DEFAULT_STATS = [
+  { label: '입시합격률', value: '95%' },
+  { label: '현업 강사진', value: '8명' },
+  { label: '누적 합격생', value: '500+' },
+  { label: '교육 경력', value: '17년' }
+];
 
-function isUnivHeader(cell) {
-  const s = String(cell || '').trim().toLowerCase();
-  return s === '대학' || s === '대학명' || s === 'university';
-}
+const DEFAULT_NAMES = [
+  '김*수', '이*영', '박*진', '최*아',
+  '정*훈', '강*미', '조*원', '윤*희',
+  '장*호', '임*경', '한*준', '서*은',
+  '송*민', '전*지', '홍*석', '문*연',
+  '배*우', '류*진', '권*서', '신*라'
+];
 
-// Load Stats - Try Firebase first, then Google Sheets
+const DEFAULT_UNIVERSITIES = [
+  '중앙대학교', '한양대학교', '동국대학교',
+  '한국예술종합학교', '서울예술대학교', '경희대학교',
+  '단국대학교', '성균관대학교', '국민대학교',
+  '세종대학교', '명지대학교', '수원대학교'
+];
+
+// Load Stats from Firebase
 async function loadStats() {
   const grid = document.getElementById('statsGrid');
   if (!grid) return;
 
   try {
-    // Try Firebase first
     const statsRef = doc(db, 'settings', 'stats');
     const statsSnap = await getDoc(statsRef);
 
@@ -198,18 +202,9 @@ async function loadStats() {
     if (statsSnap.exists() && statsSnap.data().items && statsSnap.data().items.length > 0) {
       stats = statsSnap.data().items;
     } else {
-      // Fallback to Google Sheets
-      const res = await fetch(SHEET_URLS.metrics, { cache: 'no-store' });
-      const csv = await res.text();
-      let rows = parseCSV(csv);
-
-      rows = rows.map(r => [(r[0] || '').trim(), (r[1] || '').trim()]).filter(r => r[0] || r[1]);
-
-      if (rows.length && isHeaderRow(rows[0][0], rows[0][1])) {
-        rows = rows.slice(1);
-      }
-
-      stats = rows.slice(0, 4).map(([label, value]) => ({ label, value }));
+      // Use default data and save to Firebase
+      stats = [...DEFAULT_STATS];
+      await setDoc(statsRef, { items: stats, updatedAt: new Date() });
     }
 
     // Store for editing
@@ -236,13 +231,12 @@ async function loadStats() {
   }
 }
 
-// Load Rolling Names - Try Firebase first, then Google Sheets
+// Load Rolling Names from Firebase
 async function loadNames() {
   const ul = document.getElementById('nameGrid');
   if (!ul) return;
 
   try {
-    // Try Firebase first
     const namesRef = doc(db, 'settings', 'names');
     const namesSnap = await getDoc(namesRef);
 
@@ -251,14 +245,9 @@ async function loadNames() {
     if (namesSnap.exists() && namesSnap.data().list && namesSnap.data().list.length > 0) {
       names = namesSnap.data().list;
     } else {
-      // Fallback to Google Sheets
-      const res = await fetch(SHEET_URLS.names, { cache: 'no-store' });
-      const csv = await res.text();
-
-      const lines = csv.trim().split('\n').map(l => l.replace(/"/g, '').trim());
-      const colA = lines.map(l => (l.split(',')[0] || '').trim());
-
-      names = colA.filter((v, idx) => v && idx !== 0);
+      // Use default data and save to Firebase
+      names = [...DEFAULT_NAMES];
+      await setDoc(namesRef, { list: names, updatedAt: new Date() });
     }
 
     if (names.length === 0) {
@@ -300,13 +289,12 @@ async function loadNames() {
   }
 }
 
-// Load Universities - Try Firebase first, then Google Sheets
+// Load Universities from Firebase
 async function loadUniversities() {
   const ul = document.getElementById('univGrid');
   if (!ul) return;
 
   try {
-    // Try Firebase first
     const univRef = doc(db, 'settings', 'universities');
     const univSnap = await getDoc(univRef);
 
@@ -315,16 +303,9 @@ async function loadUniversities() {
     if (univSnap.exists() && univSnap.data().list && univSnap.data().list.length > 0) {
       items = univSnap.data().list;
     } else {
-      // Fallback to Google Sheets
-      const res = await fetch(SHEET_URLS.universities, { cache: 'no-store' });
-      const csv = await res.text();
-      const rows = parseCSV(csv);
-
-      items = rows.map(r => (r[0] || '').trim()).filter(Boolean);
-
-      if (items.length && isUnivHeader(items[0])) {
-        items = items.slice(1);
-      }
+      // Use default data and save to Firebase
+      items = [...DEFAULT_UNIVERSITIES];
+      await setDoc(univRef, { list: items, updatedAt: new Date() });
     }
 
     // Store original items for editing
@@ -627,30 +608,6 @@ window.closeStatsModal = function() {
 };
 
 // ========== Utility Functions ==========
-
-// Parse CSV
-function parseCSV(csv) {
-  const lines = csv.trim().split('\n');
-  return lines.map(line => {
-    const result = [];
-    let current = '';
-    let inQuotes = false;
-
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
-        result.push(current.trim());
-        current = '';
-      } else {
-        current += char;
-      }
-    }
-    result.push(current.trim());
-    return result;
-  });
-}
 
 // Escape HTML
 function escapeHTML(str) {
