@@ -1,5 +1,5 @@
 // Teachers Page - Admin Editing Functionality
-import { db, doc, getDoc, setDoc, storage, ref, uploadBytes, getDownloadURL } from './shared/firebase-config.js';
+import { db, doc, getDoc, setDoc, storage, ref, uploadBytes, getDownloadURL } from '../shared/firebase-config.js';
 
 // Default teachers data
 const DEFAULT_TEACHERS = [

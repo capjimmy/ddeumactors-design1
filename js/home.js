@@ -3,7 +3,7 @@
    =============================================== */
 
 // Firebase imports for hero video
-import { db, storage, doc, getDoc, setDoc, ref, uploadBytes, getDownloadURL } from './shared/firebase-config.js';
+import { db, storage, doc, getDoc, setDoc, ref, uploadBytes, getDownloadURL } from '../shared/firebase-config.js';
 
 // Google Sheets URLs
 const SHEET_URLS = {
