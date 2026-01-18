@@ -614,3 +614,57 @@ window.closeStatsModal = function() {
   const modal = document.getElementById('statsEditModal');
   if (modal) modal.style.display = 'none';
 };
+
+// ========== Utility Functions ==========
+
+// Parse CSV
+function parseCSV(csv) {
+  const lines = csv.trim().split('\n');
+  return lines.map(line => {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim());
+    return result;
+  });
+}
+
+// Escape HTML
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>"']/g, m => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[m]));
+}
+
+// Initialize scroll animations
+function initScrollAnimations() {
+  const elements = document.querySelectorAll('.scroll-animate');
+
+  if (!elements.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  elements.forEach(el => observer.observe(el));
+}
