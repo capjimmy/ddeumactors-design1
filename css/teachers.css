@@ -88,30 +88,35 @@
 .teacher-admin-controls {
   position: absolute;
   top: 10px;
+  left: 10px;
   right: 10px;
   display: none;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
   z-index: 10;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
 }
 
 .teacher-admin-controls button {
-  padding: 8px 12px;
+  padding: 10px 16px;
   border: none;
   border-radius: 6px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .teacher-move-btn {
-  background: rgba(100, 100, 100, 0.9);
+  background: rgba(80, 80, 80, 1);
   color: #fff;
-  padding: 8px 10px !important;
 }
 
 .teacher-move-btn:hover:not(:disabled) {
-  background: rgba(150, 150, 150, 0.9);
+  background: rgba(120, 120, 120, 1);
 }
 
 .teacher-move-btn:disabled {
@@ -120,16 +125,16 @@
 }
 
 .teacher-edit-btn {
-  background: rgba(212, 175, 55, 0.9);
+  background: var(--color-gold);
   color: #000;
 }
 
 .teacher-edit-btn:hover {
-  background: var(--color-gold);
+  background: #f0d050;
 }
 
 .teacher-delete-btn {
-  background: rgba(192, 57, 43, 0.9);
+  background: #c0392b;
   color: #fff;
 }
 
