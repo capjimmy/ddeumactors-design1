@@ -84,8 +84,15 @@
 }
 
 .feature-icon {
-  font-size: 48px;
+  width: 56px;
+  height: 56px;
   margin-bottom: 20px;
+  color: var(--color-gold);
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .feature-title {

@@ -84,6 +84,59 @@
   color: var(--color-gold);
 }
 
+/* Admin Controls */
+.teacher-admin-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+  gap: 6px;
+  z-index: 10;
+}
+
+.teacher-admin-controls button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.teacher-move-btn {
+  background: rgba(100, 100, 100, 0.9);
+  color: #fff;
+  padding: 8px 10px !important;
+}
+
+.teacher-move-btn:hover:not(:disabled) {
+  background: rgba(150, 150, 150, 0.9);
+}
+
+.teacher-move-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.teacher-edit-btn {
+  background: rgba(212, 175, 55, 0.9);
+  color: #000;
+}
+
+.teacher-edit-btn:hover {
+  background: var(--color-gold);
+}
+
+.teacher-delete-btn {
+  background: rgba(192, 57, 43, 0.9);
+  color: #fff;
+}
+
+.teacher-delete-btn:hover {
+  background: #e74c3c;
+}
+
 /* Teacher Content */
 .teacher-content {
   display: flex;

@@ -11,13 +11,25 @@ const DEFAULT_TEACHERS = [
     image: 'images/오순태.jpg',
     details: [
       { title: '이력', type: 'list', items: ['2008–2014|수액터스팜 원장', '2015–2022|쓰리에스 대표원장', '2023–2025|그룹 레슨'] },
-      { title: '연극', type: 'text', content: '물수제비 잘하는 법 (제2회 R&J시어터 창작극 페스티벌 최우수 연기상), 헤다가블러, 속살, 하얀 역병, 고시원 등' },
+      { title: '연극', type: 'text', content: '물수제비 잘하는 법 (제2회 R&J시어터 창작극 페스티벌 최우수 연기상), 헤다가블러, 속살, 모든군인은 불쌍하다 등' },
       { title: '영화', type: 'text', content: '기묘한 가족, 상류사회, 인간중독, 이끼, 인사동 스캔들, 신기전, 해바라기 등' },
       { title: '드라마', type: 'text', content: '나쁜 엄마, 신성한 이혼, 힘쎈여자 도봉순, 실종느와르 M, 미세스 캅 등' }
     ]
   },
   {
     id: 'teacher2',
+    name: '박채은',
+    role: '원장',
+    intro: '연극·뮤지컬 현장과 예술고 강단을 잇는 실전 연기·뮤지컬 트레이닝.',
+    image: 'images/박채은.jpg',
+    details: [
+      { title: '강의 경력', type: 'text', content: '현 국립전통예술고등학교, 전 경기예술고등학교, 전 한림예술고등학교' },
+      { title: '주요 공연', type: 'text', content: '소뿔자르고주인오기전에도망가선생 (남산예술센터), 툇마루가 있는 집 (창작산실 우수지원작), 전하의 봄 (서울연극제 참가작), 강아지똥 (에딘버러 페스티벌) 등' },
+      { title: '수상', type: 'text', content: '2018 서울연극인대상 신인연기상, 서울시교육청 환경연극제 최우수상 (연출)' }
+    ]
+  },
+  {
+    id: 'teacher3',
     name: '윤서완',
     role: '원장',
     intro: '연극 기반의 밀도 높은 연기와 방송·드라마 현장을 잇는 실전 트레이닝.',
@@ -98,6 +110,18 @@ const DEFAULT_TEACHERS = [
       { title: '주요 성과', type: 'text', content: 'SBS 판타스틱듀오 에일리·바이브 편 우승' },
       { title: '작품 이력', type: 'text', content: '뮤지컬 하모니, 길위의나라, the39, 그날우리는, 연극 정글, 뮤지컬 기적소리 등' }
     ]
+  },
+  {
+    id: 'teacher9',
+    name: '이지현',
+    role: '연기파트 강사',
+    intro: '영화·드라마·연극 다양한 현장 경험을 바탕으로 한 실전 연기 트레이닝.',
+    image: 'images/이지현.jpg',
+    details: [
+      { title: '영화', type: 'text', content: '폭로 (보스턴국제영화제 최고의 스토리상), 중력에서 벗어나는 법 (엔픽스×TS나린시네마 상영작), 그분의 딸 (유니카코리아 국제영화제 입선), 엠비언스 (전주국제단편영화제 상영작)' },
+      { title: '드라마', type: 'text', content: 'Wavve/왓챠 아이킬유 (부천국제판타스틱영화제), KBS2/디즈니+ 트웰브' },
+      { title: '연극', type: 'text', content: '창귀들 (예술공간혜화), 육시내고향 (천장산우화극장)' }
+    ]
   }
 ];
 
@@ -149,8 +173,12 @@ function renderTeacherCard(teacher, index) {
         <div class="teacher-overlay">
           <span class="teacher-role-badge">${escapeHTML(teacher.role)}</span>
         </div>
-        <button class="teacher-edit-btn" data-index="${index}" style="display:none;">편집</button>
-        <button class="teacher-delete-btn" data-index="${index}" style="display:none;">삭제</button>
+        <div class="teacher-admin-controls" style="display:none;">
+          <button class="teacher-move-btn" data-index="${index}" data-direction="-1" ${index === 0 ? 'disabled' : ''}>▲</button>
+          <button class="teacher-move-btn" data-index="${index}" data-direction="1" ${index === currentTeachers.length - 1 ? 'disabled' : ''}>▼</button>
+          <button class="teacher-edit-btn" data-index="${index}">편집</button>
+          <button class="teacher-delete-btn" data-index="${index}">삭제</button>
+        </div>
       </div>
       <div class="teacher-content">
         <div class="teacher-header">
@@ -197,9 +225,9 @@ function updateAdminButtonsVisibility() {
     addBtn.style.display = isAdmin ? 'inline-block' : 'none';
   }
 
-  // Show/hide edit/delete buttons on each card
-  document.querySelectorAll('.teacher-edit-btn, .teacher-delete-btn').forEach(btn => {
-    btn.style.display = isAdmin ? 'block' : 'none';
+  // Show/hide admin controls on each card
+  document.querySelectorAll('.teacher-admin-controls').forEach(controls => {
+    controls.style.display = isAdmin ? 'flex' : 'none';
   });
 }
 
@@ -418,10 +446,11 @@ document.addEventListener('DOMContentLoaded', () => {
     addBtn.addEventListener('click', () => openEditModal(-1));
   }
 
-  // Event delegation for edit/delete buttons
+  // Event delegation for edit/delete/move buttons
   document.getElementById('teachersList')?.addEventListener('click', (e) => {
     const editBtn = e.target.closest('.teacher-edit-btn');
     const deleteBtn = e.target.closest('.teacher-delete-btn');
+    const moveBtn = e.target.closest('.teacher-move-btn');
 
     if (editBtn) {
       const index = parseInt(editBtn.dataset.index);
@@ -431,6 +460,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (deleteBtn) {
       const index = parseInt(deleteBtn.dataset.index);
       deleteTeacher(index);
+    }
+
+    if (moveBtn && !moveBtn.disabled) {
+      const index = parseInt(moveBtn.dataset.index);
+      const direction = parseInt(moveBtn.dataset.direction);
+      moveTeacher(index, direction);
     }
   });
 
