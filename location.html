@@ -53,20 +53,8 @@
 
   <section class="section location-section">
     <div class="container">
-      <!-- 테스트: 3개의 지도, 각각 다른 Client ID -->
-      <h3 style="margin-bottom:10px;">1. ddeum 앱 (s6d19uyrhq)</h3>
-      <div class="location-map" style="margin-bottom:30px;">
-        <div id="naverMap1" style="width:100%;height:300px;"></div>
-      </div>
-
-      <h3 style="margin-bottom:10px;">2. ddeumm 앱 (5u2x468k52)</h3>
-      <div class="location-map" style="margin-bottom:30px;">
-        <div id="naverMap2" style="width:100%;height:300px;"></div>
-      </div>
-
-      <h3 style="margin-bottom:10px;">3. rhyme 앱 (068jgk36vj)</h3>
       <div class="location-map">
-        <div id="naverMap3" style="width:100%;height:300px;"></div>
+        <div id="naverMap"></div>
       </div>
 
       <div class="location-info-grid">
@@ -119,35 +107,25 @@
 
   <script src="./shared/admin-auth.js"></script>
   <script src="js/main.js"></script>
-
-  <!-- 지도 1: ddeum 앱 (s6d19uyrhq) -->
   <script>
-    function initMap1() {
+    function initMap() {
       var position = new naver.maps.LatLng(37.482966, 126.981526);
-      var map = new naver.maps.Map("naverMap1", { center: position, zoom: 17 });
+      var map = new naver.maps.Map("naverMap", {
+        center: position,
+        zoom: 17,
+        zoomControl: true,
+        zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER }
+      });
       var marker = new naver.maps.Marker({ position: position, map: map });
+      var infoWindow = new naver.maps.InfoWindow({
+        content: '<div style="padding:10px 16px;font-size:14px;font-weight:600;">뜸 연기학원</div>',
+        borderWidth: 0,
+        disableAnchor: true,
+        backgroundColor: "transparent"
+      });
+      infoWindow.open(map, marker);
     }
   </script>
-  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=s6d19uyrhq&callback=initMap1"></script>
-
-  <!-- 지도 2: ddeumm 앱 (5u2x468k52) -->
-  <script>
-    function initMap2() {
-      var position = new naver.maps.LatLng(37.482966, 126.981526);
-      var map = new naver.maps.Map("naverMap2", { center: position, zoom: 17 });
-      var marker = new naver.maps.Marker({ position: position, map: map });
-    }
-  </script>
-  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5u2x468k52&callback=initMap2"></script>
-
-  <!-- 지도 3: rhyme 앱 (068jgk36vj) -->
-  <script>
-    function initMap3() {
-      var position = new naver.maps.LatLng(37.482966, 126.981526);
-      var map = new naver.maps.Map("naverMap3", { center: position, zoom: 17 });
-      var marker = new naver.maps.Marker({ position: position, map: map });
-    }
-  </script>
-  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=068jgk36vj&callback=initMap3"></script>
+  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=068jgk36vj&callback=initMap"></script>
 </body>
 </html>
