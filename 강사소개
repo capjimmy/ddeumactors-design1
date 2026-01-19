@@ -1,0 +1,773 @@
+<style>
+/* =========================
+   DTM PROFILES (Trendy Dark)
+   ========================= */
+
+/* 기본 토큰 */
+:root{
+  --dtm-bg: #0b0f17;
+  --dtm-bg2:#0f1522;
+  --dtm-card: rgba(255,255,255,.06);
+  --dtm-border: rgba(255,255,255,.10);
+  --dtm-text: rgba(255,255,255,.86);
+  --dtm-sub: rgba(255,255,255,.62);
+  --dtm-muted: rgba(255,255,255,.48);
+  --dtm-accent: #7c5cff;   /* 보라 */
+  --dtm-accent2:#2dd4bf;   /* 민트 */
+  --dtm-shadow: 0 16px 50px rgba(0,0,0,.35);
+}
+
+/* 섹션 전체 배경 */
+.dtm-profiles{
+  background: radial-gradient(1200px 700px at 10% 0%, rgba(124,92,255,.18), transparent 55%),
+              radial-gradient(1000px 600px at 90% 20%, rgba(45,212,191,.14), transparent 50%),
+              linear-gradient(180deg, var(--dtm-bg), var(--dtm-bg2));
+  padding: 72px 0;
+  color: var(--dtm-text);
+}
+
+/* 컨테이너 */
+.dtm-profiles .dtm-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 상단 헤더(선택) */
+.dtm-profiles .dtm-hero{
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+.dtm-profiles .dtm-eyebrow{
+  letter-spacing: .18em;
+  font-size: 12px;
+  color: var(--dtm-muted);
+  text-transform: uppercase;
+}
+.dtm-profiles .dtm-title{
+  margin:0;
+  font-size: 25px;
+  line-height: 1.15;
+  font-weight: 800;
+}
+.dtm-profiles .dtm-desc{
+  margin:0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--dtm-sub);
+  max-width: 720px;
+}
+
+/* 리스트 */
+.dtm-list{
+  display:flex;
+  flex-direction:column;
+  gap: 22px;
+}
+
+/* 한 명 카드(세트 단위) */
+.dtm-person{
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+  border: 1px solid var(--dtm-border);
+  box-shadow: var(--dtm-shadow);
+}
+
+/* 은은한 빛 효과 */
+.dtm-person::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(600px 220px at 20% 0%, rgba(124,92,255,.22), transparent 55%),
+              radial-gradient(520px 240px at 90% 10%, rgba(45,212,191,.18), transparent 60%);
+  opacity: .55;
+  pointer-events:none;
+}
+.dtm-person::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.25));
+  pointer-events:none;
+}
+
+/* 내부 레이아웃: 데스크탑 2열 */
+.dtm-person .dtm-inner{
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 28px;
+  padding: 22px;
+  align-items: stretch;
+}
+
+/* 교차 배치: 짝수는 반대로 */
+.dtm-person.is-reverse .dtm-inner{
+  grid-template-columns: 1fr 420px;
+}
+.dtm-person.is-reverse .dtm-photo{
+  order: 2;
+}
+.dtm-person.is-reverse .dtm-body{
+  order: 1;
+}
+
+/* 이미지 영역 */
+.dtm-photo{
+  position: relative;
+  min-height: 520px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+}
+
+/* 이미지 위에 그라데이션 오버레이 */
+.dtm-photo::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.55)),
+    radial-gradient(700px 260px at 30% 20%, rgba(124,92,255,.18), transparent 60%),
+    radial-gradient(700px 260px at 70% 30%, rgba(45,212,191,.12), transparent 65%);
+  pointer-events:none;
+}
+
+/* 역할/이름 오버레이(트렌디 라벨) */
+.dtm-photo .dtm-photo-tag{
+  position:absolute;
+  left: 16px;
+  bottom: 16px;
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+}
+.dtm-pill{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(255,255,255,.86);
+  font-size: 12px;
+}
+.dtm-dot{
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--dtm-accent), var(--dtm-accent2));
+  box-shadow: 0 0 0 4px rgba(124,92,255,.14);
+}
+.dtm-photo-name{
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  color: rgba(255,255,255,.92);
+}
+
+/* 내용 영역 */
+.dtm-body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding: 4px 6px;
+}
+
+.dtm-head{
+  margin-bottom: 18px;
+}
+.dtm-role{
+  display:inline-block;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dtm-muted);
+  margin-bottom: 10px;
+}
+.dtm-name{
+  margin: 0 0 10px 0;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+.dtm-intro{
+  margin:0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--dtm-sub);
+}
+
+/* 블록 카드(경력/작품) */
+.dtm-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+.dtm-block{
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.09);
+  padding: 14px 14px 13px;
+  position: relative;
+  overflow:hidden;
+}
+.dtm-block::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(420px 120px at 10% 0%, rgba(124,92,255,.14), transparent 55%);
+  opacity:.6;
+  pointer-events:none;
+}
+.dtm-title2{
+  position: relative;
+  z-index:1;
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: rgba(255,255,255,.86);
+}
+.dtm-text{
+  position: relative;
+  z-index:1;
+  margin:0;
+  font-size: 13px;
+  line-height: 1.85;
+  color: rgba(255,255,255,.62);
+  word-break: keep-all;
+}
+.dtm-timeline{
+  position: relative;
+  z-index:1;
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+}
+.dtm-timeline li{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size: 13px;
+  color: rgba(255,255,255,.62);
+  line-height: 1.65;
+}
+.dtm-timeline li span{
+  flex: 0 0 auto;
+  min-width: 86px;
+  font-weight: 800;
+  color: rgba(255,255,255,.84);
+  opacity: .95;
+}
+.dtm-highlight{
+  color: rgba(255,255,255,.92);
+  font-weight: 800;
+}
+.dtm-note{
+  font-size: 12px;
+  color: rgba(255,255,255,.48);
+}
+
+/* hover */
+@media (hover:hover){
+  .dtm-person{
+    transition: transform .18s ease, border-color .18s ease;
+  }
+  .dtm-person:hover{
+    transform: translateY(-2px);
+    border-color: rgba(124,92,255,.28);
+  }
+  .dtm-photo{
+    transition: transform .35s ease;
+  }
+  .dtm-person:hover .dtm-photo{
+    transform: scale(1.01);
+  }
+}
+
+/* =========================
+   반응형: 모바일 1열(세트 유지)
+   ========================= */
+@media (max-width: 980px){
+  .dtm-person .dtm-inner{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  .dtm-person.is-reverse .dtm-inner{
+    grid-template-columns: 1fr; /* reverse 무시 */
+  }
+  .dtm-person.is-reverse .dtm-photo,
+  .dtm-person.is-reverse .dtm-body{
+    order: initial;
+  }
+  .dtm-photo{
+    min-height: 360px;
+  }
+  .dtm-grid{
+    grid-template-columns: 1fr;
+  }
+  .dtm-title{
+    font-size: 28px;
+  }
+  .dtm-name{
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 520px){
+  .dtm-profiles{
+    padding: 54px 0;
+  }
+  .dtm-photo .dtm-photo-tag{
+    left: 12px;
+    bottom: 12px;
+  }
+}
+</style>
+
+<section class="dtm-profiles">
+  <div class="dtm-container">
+
+    <!-- (선택) 섹션 헤더 -->
+    <header class="dtm-hero">
+      <p class="dtm-eyebrow">DIRECTOR & TEACHERS</p>
+      <h2 class="dtm-title">강사진 소개</h2>
+      <p class="dtm-desc">
+        실기 중심 훈련과 개인 맞춤 코칭으로, 무대·카메라 앞에서 통하는 연기를 만듭니다.
+      </p>
+    </header>
+
+    <div class="dtm-list">
+
+      <!-- 1. 오순태 (대표) : 이미지-내용 -->
+      <article class="dtm-person">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20251230/1c8ca055c718c.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>대표</span>
+              <div class="dtm-photo-name">오순태</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">대표</span>
+              <h2 class="dtm-name">오순태</h2>
+              <p class="dtm-intro">
+                설익은 연기가 아닌, 현장에서 통하는 연기.<br>
+                무대와 카메라를 모두 아는 실전 중심 연기 지도.
+              </p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">이력</h3>
+                <ul class="dtm-timeline">
+                  <li><span>2008–2014</span> 수액터스팜 원장</li>
+                  <li><span>2015–2022</span> 쓰리에스 대표원장</li>
+                  <li><span>2023–2025</span> 그룹 레슨</li>
+                </ul>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">연극</h3>
+                <p class="dtm-text">
+                  <b class="dtm-highlight">물수제비 잘하는 법</b><br>
+                  <span class="dtm-note">제2회 R&J시어터 창작극 페스티벌 최우수 연기상 수상</span><br><br>
+                  헤다가블러 · 속살 · 하얀 역병 · 고시원 · 여름은 덥고 겨울은 길다 · 골목길 햄릿 · 모든 군인은 불쌍하다
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">영화</h3>
+                <p class="dtm-text">
+                  기묘한 가족 · 상류사회 · 인간중독 · 이끼 · 인사동 스캔들 · 신기전 · 해바라기 · 우리들의 행복한 시간 · 싸움의 기술 · 흡혈형사 나도열 · 잠복근무
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">드라마</h3>
+                <p class="dtm-text">
+                  나쁜 엄마 · 신성한 이혼 · 힘쎈여자 도봉순 · 실종느와르 M · 미세스 캅 · 전설의 마녀 · 감격시대 · 히트
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. 윤서완 (원장) : 내용-이미지 (reverse) -->
+      <article class="dtm-person is-reverse">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20260101/ab2248f3bd482.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>원장</span>
+              <div class="dtm-photo-name">윤서완</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">원장</span>
+              <h2 class="dtm-name">윤서완</h2>
+              <p class="dtm-intro">
+                연극 기반의 밀도 높은 연기와<br>
+                방송·드라마 현장을 잇는 실전 트레이닝.
+              </p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">학력 · 경력</h3>
+                <ul class="dtm-timeline">
+                  <li><span>학력</span> 국민대학교 연극과 졸업</li>
+                  <li><span>現</span> 톤연기학원 신사캠프 전임강사</li>
+                </ul>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">연극</h3>
+                <p class="dtm-text">
+                  빅러브 · 뻘 · 매두사의 뗏목 · 올모스트 메인 · 댓글부대 · 내 모든 걸 · 의무계 · 돌아오는 화요일 · 결혼심사
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">영화 · 방송 · 드라마</h3>
+                <p class="dtm-text">
+                  KAKA 장편영화 <b class="dtm-highlight">메이트</b><br>
+                  독립단편 픽션<br>
+                  KBS 당찬우리동네 · Olive 은주의방 · SBS 국민사형투표 · JTBC 힘쎈여자 강남순
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">그 외</h3>
+                <p class="dtm-text">
+                  SK하이닉스 전속모델 · 카카오페이 · LF몰 · 우리카드
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. 윤신웅 (연기파트 강사) : 이미지-내용 -->
+      <article class="dtm-person">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20260101/e4aba6292553e.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>연기파트 강사</span>
+              <div class="dtm-photo-name">윤신웅</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">연기파트 강사</span>
+              <h2 class="dtm-name">윤신웅</h2>
+              <p class="dtm-intro">드라마·영화·무대 경험 기반의 실전 연기 트레이닝.</p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">학력</h3>
+                <ul class="dtm-timeline">
+                  <li><span>학력</span> 중앙대학교</li>
+                </ul>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">드라마</h3>
+                <p class="dtm-text">
+                  취하는 로맨스 · 백번의 추억 · 미녀와 순정남 · 모텔캘리포니아 · 미혼남녀 효율적인 만남 ·
+                  여왕의 집 · 신입사원 강회장 · 별들에게 물어봐
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">영화</h3>
+                <p class="dtm-text">
+                  데드맨 · 민현은 괴로워 <span class="dtm-note">(독립단편)</span> · 육상의 전설 <span class="dtm-note">(독립단편)</span> ·
+                  목공소를 부탁해 <span class="dtm-note">(독립단편)</span> · 주차금지 <span class="dtm-note">(독립단편)</span> ·
+                  시체 옷 입히기 <span class="dtm-note">(독립단편)</span>
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">연극 · 광고</h3>
+                <p class="dtm-text">
+                  한 여름 밤의 꿈 — <span class="dtm-highlight">닉 바틈</span><br>
+                  에스콰이어 룩북 남자
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. 윤영중 (뮤지컬파트 강사) : 내용-이미지 (reverse) -->
+      <article class="dtm-person is-reverse">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20260101/0481cd21e8c0d.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>뮤지컬파트 강사</span>
+              <div class="dtm-photo-name">윤영중</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">뮤지컬파트 강사</span>
+              <h2 class="dtm-name">윤영중</h2>
+              <p class="dtm-intro">성악 기반의 발성·호흡·무대 퍼포먼스를 통합하는 뮤지컬 트레이닝.</p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">학력</h3>
+                <p class="dtm-text">
+                  관동대학교 성악과 졸업<br>
+                  ITALIA Accademia di Donizetti 뮤지컬 과정 Diploma
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">오페라</h3>
+                <p class="dtm-text">
+                  라 트라비아타 · 리골렛또 · 나부코 · 카르멘 · I puritani · 오텔로 · 토스카 · 라보엠 ·
+                  춘향전 · 일트로바토레 · 팔리아치 · 까발레리아 루스띠까나 · 마술피리 · 나비부인 ·
+                  이이다 · 투란도트 · 돈죠반니 · 세빌리아의 이발사
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">해외/특별 공연</h3>
+                <ul class="dtm-timeline">
+                  <li><span>춘향전</span> 독일·중국 공연</li>
+                  <li><span>리골렛또</span> 중국 공연</li>
+                  <li><span>아 고구려</span> 북한 평양 공연</li>
+                </ul>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">주요 무대</h3>
+                <p class="dtm-text">
+                  천지창조 · 메시아 · 베토벤 교향곡 9번 · 말러 교향곡 · 구노 장엄미사 · 모짜르트 레퀴엠<br>
+                  조수미 독창회 · 광복 60주년 기념 음악회 · 조용필 40주년 콘서트 등
+                  <span class="dtm-highlight">100여 회 이상의 음악회</span> 출연<br><br>
+                  <span class="dtm-highlight">뮤지컬</span> 정조대왕 · 마리아 마리아<br>
+                  <span class="dtm-highlight">경력</span> 전 쓰리에스연기학원 뮤지컬 강사
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. 서현정 (무용파트 강사) : 이미지-내용 -->
+      <article class="dtm-person">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20260101/5d6ad88189b36.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>무용파트 강사</span>
+              <div class="dtm-photo-name">서현정</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">무용파트 강사</span>
+              <h2 class="dtm-name">서현정</h2>
+              <p class="dtm-intro">기초부터 무대 실전까지 연결하는 테크닉·라인·몸의 언어 훈련.</p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">학력</h3>
+                <ul class="dtm-timeline">
+                  <li><span>2014</span> 국민대학교 학사 졸업</li>
+                  <li><span>2017</span> 국민대학교 무용학 석사 졸업</li>
+                </ul>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">이력</h3>
+                <ul class="dtm-timeline">
+                  <li><span>전</span> 충북예술고등학교 강사</li>
+                  <li><span>전</span> 3S 무용 강사</li>
+                  <li><span>현</span> 덕원예술고등학교 강사</li>
+                  <li><span>현</span> 두아코댄스 컴퍼니 정단원</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. 이정은 (연기파트 강사) : 내용-이미지 (reverse) -->
+      <article class="dtm-person is-reverse">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20260101/2578e10601a96.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>연기파트 강사</span>
+              <div class="dtm-photo-name">이정은</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">연기파트 강사</span>
+              <h2 class="dtm-name">이정은</h2>
+              <p class="dtm-intro">창작/레퍼토리 기반의 텍스트 분석과 캐릭터 구축 트레이닝.</p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">학력</h3>
+                <p class="dtm-text">한국예술종합학교 연극원</p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">연극</h3>
+                <p class="dtm-text">
+                  2025 국립극단 청소년극 <span class="dtm-highlight">&lt;19호실&gt;</span><br>
+                  2025 낭독공연 아르코 봄작가 겨울무대 <span class="dtm-highlight">&lt;회장님의 위인전&gt;</span><br>
+                  청소년 낭독극 <span class="dtm-highlight">&lt;주머니의 말&gt;</span> · <span class="dtm-highlight">&lt;할머니의 옷장&gt;</span> ·
+                  <span class="dtm-highlight">&lt;모든 상담원은 통화중입니다&gt;</span> · 프로젝트 텐미닛 연극제<br>
+                  제13회 청춘나눔창작연극제 십분발휘
+                  <span class="dtm-highlight">&lt;여름 바람보다 무서운, 그렇다고 비틀거리지 않는&gt;</span><br>
+                  2024 노무현재단 제2회 짧은 연극제 <span class="dtm-highlight">&lt;싱크홀에 빠지지 않는 법&gt;</span><br>
+                  제12회 청춘나눔창작연극제 십분발휘 <span class="dtm-highlight">&lt;노르웨이의 숲&gt;</span><br>
+                  2023 <span class="dtm-highlight">&lt;붙박2人&gt;</span>
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">영화/MV</h3>
+                <p class="dtm-text">
+                  2025 <span class="dtm-highlight">&lt;.&gt;</span> (채은석 감독)<br>
+                  2023 <span class="dtm-highlight">&lt;식탁의 무게&gt;</span> (조영인 감독)<br>
+                  2023 <span class="dtm-highlight">&lt;손수&gt;</span> (최범규 감독)<br><br>
+                  안다영 <span class="dtm-highlight">&lt;걸작&gt;</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. 이수연 (연기파트 강사) : 이미지-내용 -->
+      <article class="dtm-person">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20260101/3a54914563308.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>연기파트 강사</span>
+              <div class="dtm-photo-name">이수연</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">연기파트 강사</span>
+              <h2 class="dtm-name">이수연</h2>
+              <p class="dtm-intro">현장에 바로 적용되는 리얼리티·호흡·상황 연기 중심 트레이닝.</p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">학력</h3>
+                <p class="dtm-text">중앙대학교 연극학과 졸업</p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">공연</h3>
+                <p class="dtm-text">돐날 · 12인 · 로베르토 쥬코 · 원자폭탄되기</p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">영화/드라마</h3>
+                <p class="dtm-text">미로 · 어느날 · 자백의 대가 · 내여자친구는 상남자 · 미지의서울 · 부테스</p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">한 줄 포인트</h3>
+                <p class="dtm-text"><span class="dtm-highlight">상황·호흡·리얼리티</span>로 ‘바로 쓰는 연기’에 집중합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. 김새하 (뮤지컬파트 강사) : 내용-이미지 (reverse) -->
+      <article class="dtm-person is-reverse">
+        <div class="dtm-inner">
+          <div class="dtm-photo" style="background-image:url('https://cdn.imweb.me/thumbnail/20260104/be619b7bc9545.jpg');">
+            <div class="dtm-photo-tag">
+              <span class="dtm-pill"><i class="dtm-dot"></i>뮤지컬파트 강사</span>
+              <div class="dtm-photo-name">김새하</div>
+            </div>
+          </div>
+
+          <div class="dtm-body">
+            <header class="dtm-head">
+              <span class="dtm-role">뮤지컬파트 강사</span>
+              <h2 class="dtm-name">김새하</h2>
+              <p class="dtm-intro">오디션·입시 실전에 강한 보컬/뮤지컬 퍼포먼스 트레이닝과 무대 경험 기반 코칭.</p>
+            </header>
+
+            <div class="dtm-grid">
+              <div class="dtm-block">
+                <h3 class="dtm-title2">강사 이력</h3>
+                <p class="dtm-text">
+                  EG씨어터 입시반 강사 · 공감M아트센터 뮤지컬 강사 · 생명의전화 청소년뮤지컬프로젝트 뮤지컬 강사 ·
+                  3S연기학원 뮤지컬 강사 · 로이액터스 뮤지컬 강사 · 한국KPOP고등학교 연기강사 ·
+                  HMC컴퍼니 오디션전문반 강사 · 덕수중학교 뮤지컬 강사
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">주요 성과</h3>
+                <p class="dtm-text">SBS 판타스틱듀오 에일리·바이브 편 우승</p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">작품/활동 이력</h3>
+                <p class="dtm-text">
+                  2017 뮤지컬 하모니(예술의전당 자유소극장) · 2017 뮤지컬 독일아리랑(구미문화회관) ·
+                  2018 뮤지컬 길위의나라(대학로예술극장 대극장) · 2018 뮤지컬 하모니(한전아트센터) ·
+                  2019 뮤지컬 the39(구로아트밸리 대극장) · 2020 뮤지컬 그날우리는(대학로 윈시어터) ·
+                  2021 연극 정글(대학로예술극장 대극장) · 2021 뮤지컬 하모니(YES24 스테이지) ·
+                  2024 뮤지컬 차차차원이 다다른 뮤지컬(광주아시아문화의전당) · 2025 뮤지컬 기적소리
+                </p>
+              </div>
+
+              <div class="dtm-block">
+                <h3 class="dtm-title2">한 줄 포인트</h3>
+                <p class="dtm-text"><span class="dtm-highlight">오디션/입시 실전</span>에 맞춰 “무대에서 바로 먹히는 퍼포먼스”를 설계합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>

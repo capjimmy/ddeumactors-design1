@@ -1,0 +1,179 @@
+/* ===============================================
+   뜸 연기학원 - 강사 소개 스타일
+   =============================================== */
+
+.teachers-section {
+  padding: 60px 0 80px;
+}
+
+/* ===== Profile Card ===== */
+.dtm-profile {
+  max-width: 920px;
+  margin: 0 auto 60px;
+  padding: 28px 0 10px;
+  color: #161616;
+}
+
+.dtm-profile:last-child {
+  margin-bottom: 0;
+}
+
+.dtm-head {
+  margin-bottom: 34px;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.dtm-photo {
+  flex-shrink: 0;
+  width: 180px;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.dtm-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dtm-info {
+  flex: 1;
+}
+
+.dtm-role {
+  display: block;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #d23b3b;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.dtm-role::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 3px;
+  background: #d23b3b;
+  margin-top: 12px;
+  border-radius: 999px;
+}
+
+.dtm-name {
+  margin: 0 0 14px 0;
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.dtm-intro {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #5e5e5e;
+}
+
+/* ===== Grid Blocks ===== */
+.dtm-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.dtm-block {
+  padding-top: 18px;
+  border-top: 1px solid #eeeeee;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.dtm-block:hover {
+  transform: translateY(-2px);
+  border-top-color: #e3e3e3;
+}
+
+.dtm-title {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.dtm-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dtm-timeline li {
+  padding: 7px 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #2a2a2a;
+}
+
+.dtm-timeline span {
+  display: inline-block;
+  min-width: 120px;
+  font-weight: 900;
+  color: #9a9a9a;
+  letter-spacing: 0.02em;
+}
+
+.dtm-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.95;
+  color: #2b2b2b;
+}
+
+.dtm-highlight {
+  font-weight: 900;
+  color: #111;
+}
+
+.dtm-note {
+  display: inline-block;
+  font-size: 14px;
+  color: #7a7a7a;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .dtm-profile {
+    padding: 18px 0 8px;
+  }
+  .dtm-head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .dtm-photo {
+    width: 140px;
+    height: 170px;
+  }
+  .dtm-role::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dtm-role {
+    font-size: 20px;
+    letter-spacing: 0.10em;
+  }
+  .dtm-name {
+    font-size: 32px;
+  }
+  .dtm-intro {
+    font-size: 15px;
+  }
+  .dtm-timeline span {
+    min-width: 96px;
+  }
+}

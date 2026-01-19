@@ -1,0 +1,505 @@
+
+<section class="cw-wrap" aria-label="커리큘럼 안내">
+  <header class="cw-hero">
+    <p class="cw-eyebrow">CURRICULUM</p>
+    <h2 class="cw-title">입시 커리큘럼 안내</h2>
+    <p class="cw-desc">
+      실기 중심 훈련과 개인 맞춤 코칭으로, <b>무대·카메라 앞에서 통하는 연기</b>를 만듭니다.
+    </p>
+  </header>
+
+  <!-- ✅ 카드 그리드 (웹 3열 / 모바일 1열) -->
+  <div class="cw-cards">
+
+    <!-- 카드 1 -->
+    <article class="cw-vcard">
+      <div class="cw-vhead">
+        <span class="cw-vbadge">입시반</span>
+        <h3 class="cw-vtitle">입시반 고등</h3>
+        <p class="cw-vsub">재입 포함</p>
+      </div>
+
+      <div class="cw-vmeta">
+        <div class="cw-vmeta-item">
+          <span class="k">수업</span>
+          <span class="v"><br>주 6회</span>
+        </div>
+        <div class="cw-vmeta-item">
+          <span class="k">총 시간</span>
+          <span class="v"><br>72시간</span>
+        </div>
+        <div class="cw-vmeta-item price">
+          <span class="k">수강료</span>
+          <span class="v"><br>95만원</span>
+        </div>
+      </div>
+
+      <div class="cw-vsection">
+        <div class="cw-vlabel">핵심 포인트</div>
+        <ul class="cw-vlist">
+          <li>대학별 실기 유형 분석 및 전략 수립</li>
+          <li>자유·지정·즉흥·상황 연기 완성</li>
+          <li>개인 캐릭터·톤 확립 & 실전 안정감 강화</li>
+        </ul>
+      </div>
+
+      <div class="cw-vsection">
+        <div class="cw-vlabel">수업 구성</div>
+        <div class="cw-vtags">
+          <span class="cw-vtag">담임 연기 1</span>
+          <span class="cw-vtag">담임 연기 2</span>
+          <span class="cw-vtag">부담임 연기</span>
+          <span class="cw-vtag">무용</span>
+          <span class="cw-vtag">뮤지컬</span>
+          <span class="cw-vtag strong">주특기 특강</span>
+        </div>
+        <div class="cw-vnote">
+          주특기 특강은 지원 대학/전공 트렌드에 맞춰 <b>카메라 테스트, 노래·리듬, 신체 표현</b> 등으로 유동 운영됩니다.
+        </div>
+      </div>
+    </article>
+
+    <!-- 카드 2 -->
+    <article class="cw-vcard soft">
+      <div class="cw-vhead">
+        <span class="cw-vbadge alt">예비입시반</span>
+        <h3 class="cw-vtitle">예비입시반</h3>
+        <p class="cw-vsub">고2 이하</p>
+      </div>
+
+      <div class="cw-vmeta">
+        <div class="cw-vmeta-item">
+          <span class="k">수업</span>
+          <span class="v"><br>주 4회</span>
+        </div>
+        <div class="cw-vmeta-item">
+          <span class="k">총 시간</span>
+          <span class="v"><br>32시간</span>
+        </div>
+        <div class="cw-vmeta-item price">
+          <span class="k">수강료</span>
+          <span class="v"><br>50만원</span>
+        </div>
+      </div>
+
+      <div class="cw-vsection">
+        <div class="cw-vlabel">핵심 포인트</div>
+        <ul class="cw-vlist">
+          <li>호흡·발성·발음·집중·상상력 기초 확립</li>
+          <li>장면 분석(상황·목표·행동) 습관화</li>
+          <li>리듬감·신체 표현 기반 강화</li>
+        </ul>
+      </div>
+
+      <div class="cw-vsection">
+        <div class="cw-vlabel">수업 구성</div>
+        <div class="cw-vtags">
+          <span class="cw-vtag">담임 연기</span>
+          <span class="cw-vtag">그룹 연기</span>
+          <span class="cw-vtag">무용</span>
+          <span class="cw-vtag">뮤지컬</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 카드 3 -->
+    <article class="cw-vcard soft">
+      <div class="cw-vhead">
+        <span class="cw-vbadge alt">주말반</span>
+        <h3 class="cw-vtitle">주말 입시반</h3>
+        <p class="cw-vsub">CLASS 3시간 · 정원 8명</p>
+      </div>
+
+      <div class="cw-vmeta">
+        <div class="cw-vmeta-item">
+          <span class="k">수업</span>
+          <span class="v"><br>주 4회</span>
+        </div>
+        <div class="cw-vmeta-item">
+          <span class="k">총 시간</span>
+          <span class="v"><br>48시간</span>
+        </div>
+        <div class="cw-vmeta-item price">
+          <span class="k">수강료</span>
+          <span class="v"><br>750,000원 <span class="cw-vhint">(주말반 할인가)</span></span>
+        </div>
+      </div>
+
+      <div class="cw-vsection">
+        <div class="cw-vlabel">핵심 포인트</div>
+        <ul class="cw-vlist">
+          <li>주말 집중 루틴으로 실기 핵심 역량 빠른 상승</li>
+          <li>독백·지정·제시·즉흥·구술 대학별 대응 강화</li>
+          <li>주특기/부특기 기초 → 개인 작품 완성 빌드업</li>
+        </ul>
+      </div>
+
+      <div class="cw-vsection">
+        <div class="cw-vlabel">수업 구성</div>
+        <div class="cw-vtags">
+          <span class="cw-vtag">연기 1</span>
+          <span class="cw-vtag">연기 2</span>
+          <span class="cw-vtag strong">주특기 1</span>
+          <span class="cw-vtag">부특기 1</span>
+        </div>
+
+        <div class="cw-vnote">
+          <div class="cw-vnote-grid">
+            <div>
+              <b>독백 연기</b>
+              <span>독백 완성도(상황·목표·행동) 중심 교정</span>
+            </div>
+            <div>
+              <b>지정 / 제시 즉흥 / 구술</b>
+              <span>순간 반응·논리·호흡 흐름을 실전 기준으로 훈련</span>
+            </div>
+            <div>
+              <b>주특기 1</b>
+              <span>기초 수업 + 특기 개인 작품(입시 방향성 맞춤)</span>
+            </div>
+            <div>
+              <b>부특기 1</b>
+              <span>기초 수업 + 특기 개인 작품(약점 보완 & 안정감)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /cw-cards -->
+
+  <!-- 공통 안내 -->
+  <div class="cw-foot">
+    <div class="cw-foot-card">
+      <div class="cw-foot-title">공통 안내</div>
+      <div class="cw-foot-grid">
+        <div class="cw-foot-item">
+          <div class="k">상담/레벨</div>
+          <div class="v">레벨 테스트 후 반 편성 · 목표 대학/성향 기반 추천</div>
+        </div>
+        <div class="cw-foot-item">
+          <div class="k">점검</div>
+          <div class="v">월간 점검(옵션) · 모의 실기/면접(필요 시)</div>
+        </div>
+        <div class="cw-foot-item">
+          <div class="k">유의</div>
+          <div class="v">커리큘럼은 시즌/입시 트렌드에 따라 일부 조정될 수 있습니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* =========================
+   Trendy Theme (2026 vibe)
+   - soft gradient bg
+   - glass-ish cards
+   - modern accent
+   ========================= */
+
+/* theme tokens */
+.cw-wrap{
+  --bg0:#0b1020;
+  --bg1:#0f1730;
+  --card: rgba(255,255,255,.78);
+  --card2: rgba(255,255,255,.72);
+  --stroke: rgba(255,255,255,.18);
+  --text:#0b0f1a;
+  --muted:#5b6272;
+
+  --accent:#7c3aed;     /* violet */
+  --accent2:#22c55e;    /* green */
+  --accent3:#06b6d4;    /* cyan */
+  --danger:#ff3b7b;     /* pink */
+  --shadow: 0 18px 40px rgba(0,0,0,.22);
+  --shadow2: 0 12px 28px rgba(0,0,0,.14);
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 8px 34px;
+  letter-spacing: -0.02em;
+
+  /* section background */
+  background:
+    radial-gradient(1200px 520px at 12% 0%, rgba(124,58,237,.22), transparent 55%),
+    radial-gradient(900px 500px at 86% 12%, rgba(6,182,212,.18), transparent 55%),
+    radial-gradient(900px 520px at 70% 95%, rgba(34,197,94,.12), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  border-radius: 26px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle noise-ish dots (safe) */
+.cw-wrap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.06) 0 1px, transparent 2px) 0 0/26px 26px;
+  opacity:.45;
+  pointer-events:none;
+}
+
+/* ===== hero ===== */
+.cw-hero{
+  margin-bottom: 14px;
+  padding: 10px 10px;
+  position: relative;
+  z-index: 1;
+}
+.cw-eyebrow{
+  margin:0 0 10px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.68);
+}
+.cw-title{
+  margin:0 0 10px;
+  font-size: 28px;
+  font-weight: 950;
+  color: #fff;
+}
+.cw-desc{
+  margin:0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.78);
+}
+
+/* ===== cards grid ===== */
+.cw-cards{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== vertical card ===== */
+.cw-vcard{
+  border-radius: 22px;
+  background: linear-gradient(180deg, var(--card), rgba(255,255,255,.62));
+  border: 1px solid var(--stroke);
+  padding: 16px 16px;
+  color: var(--text);
+  box-shadow: var(--shadow2);
+  position: relative;
+  overflow: hidden;
+
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, filter .22s ease;
+  backdrop-filter: blur(10px);
+}
+
+/* variation */
+.cw-vcard.soft{
+  background: linear-gradient(180deg, var(--card2), rgba(255,255,255,.58));
+}
+
+/* top glow */
+.cw-vcard::after{
+  content:"";
+  position:absolute;
+  left:-30%;
+  top:-60%;
+  width: 160%;
+  height: 90%;
+  background: radial-gradient(circle at 30% 60%, rgba(124,58,237,.20), transparent 62%);
+  transform: rotate(8deg);
+  pointer-events:none;
+}
+
+/* left accent bar */
+.cw-vcard::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--accent), var(--accent3));
+  opacity:.55;
+  transition: opacity .22s ease;
+}
+
+.cw-vcard:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: rgba(255,255,255,.28);
+  filter: saturate(1.03);
+}
+.cw-vcard:hover::before{ opacity: 1; }
+
+/* head */
+.cw-vhead{ display:flex; flex-direction:column; gap:6px; position:relative; z-index:1; }
+.cw-vbadge{
+  display:inline-flex;
+  align-items:center;
+  height: 28px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: rgba(124,58,237,.10);
+  border: 1px solid rgba(124,58,237,.28);
+  font-size: 12px;
+  font-weight: 950;
+  color: #2b134f;
+  width: fit-content;
+}
+.cw-vbadge.alt{
+  background: rgba(6,182,212,.10);
+  border-color: rgba(6,182,212,.28);
+  color: #053b46;
+}
+
+.cw-vtitle{ margin:0; font-size:20px; font-weight:950; letter-spacing:-.02em; }
+.cw-vsub{ margin:0; font-size:13px; font-weight:850; color: rgba(11,15,26,.62); }
+
+/* meta */
+.cw-vmeta{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+  position:relative;
+  z-index:1;
+}
+.cw-vmeta-item{
+  border-radius: 16px;
+  background: rgba(255,255,255,.60);
+  border: 1px solid rgba(15,23,42,.10);
+  padding: 10px 10px;
+}
+.cw-vmeta-item .k{
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(11,15,26,.52);
+}
+.cw-vmeta-item .v{
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 950;
+  color: rgba(11,15,26,.90);
+  line-height: 1.25;
+}
+.cw-vmeta-item.price .v{
+  color: var(--danger);
+}
+.cw-vhint{
+  font-weight: 900;
+  color: rgba(11,15,26,.55);
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+/* sections */
+.cw-vsection{
+  border-radius: 18px;
+  background: rgba(255,255,255,.54);
+  border: 1px solid rgba(15,23,42,.10);
+  padding: 12px 12px;
+  position:relative;
+  z-index:1;
+}
+.cw-vlabel{
+  font-size: 12px;
+  font-weight: 950;
+  color: rgba(11,15,26,.88);
+  margin-bottom: 8px;
+}
+.cw-vlist{
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(11,15,26,.70);
+}
+
+/* tags */
+.cw-vtags{ display:flex; flex-wrap:wrap; gap: 10px; }
+.cw-vtag{
+  display:inline-flex;
+  align-items:center;
+  padding: 9px 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(15,23,42,.10);
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(11,15,26,.86);
+}
+.cw-vtag.strong{
+  border-color: rgba(124,58,237,.28);
+  box-shadow: 0 10px 22px rgba(124,58,237,.14);
+  background: linear-gradient(180deg, rgba(124,58,237,.12), rgba(255,255,255,.82));
+}
+
+/* note */
+.cw-vnote{
+  margin-top: 10px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(15,23,42,.06);
+  border: 1px dashed rgba(15,23,42,.18);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(11,15,26,.72);
+}
+.cw-vnote-grid{ display:grid; gap:10px; }
+.cw-vnote-grid b{ color: rgba(11,15,26,.92); }
+.cw-vnote-grid span{ display:block; color: rgba(11,15,26,.70); margin-top:4px; }
+
+/* ===== footer ===== */
+.cw-foot{ margin-top: 14px; position:relative; z-index:1; }
+.cw-foot-card{
+  border-radius: 22px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.16);
+  padding: 16px 16px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.18);
+  backdrop-filter: blur(10px);
+}
+.cw-foot-title{
+  font-size: 13px;
+  font-weight: 950;
+  color: rgba(255,255,255,.92);
+  margin-bottom: 10px;
+}
+.cw-foot-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+}
+.cw-foot-item{
+  border-radius: 18px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.14);
+  padding: 12px 12px;
+}
+.cw-foot-item .k{
+  font-size: 12px;
+  font-weight: 950;
+  color: rgba(255,255,255,.72);
+}
+.cw-foot-item .v{
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 850;
+  color: rgba(255,255,255,.88);
+  line-height: 1.55;
+}
+
+/* ===== responsive ===== */
+@media (max-width: 900px){
+  .cw-cards{ grid-template-columns: 1fr; }
+  .cw-vmeta{ grid-template-columns: 1fr; }
+  .cw-title{ font-size:24px; }
+  .cw-foot-grid{ grid-template-columns: 1fr; }
+}
+</style>

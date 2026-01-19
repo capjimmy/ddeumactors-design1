@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="뜸 연기학원 상담 신청">
+  <title>상담 신청 - 뜸 연기학원</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><img src="../images/logo.jpg" alt="뜸 ACTORS" class="logo-img"></a>
+
+      <nav class="nav">
+        <div class="nav-item">
+          <a href="../index.html" class="nav-link">홈</a>
+        </div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link">학원소개</a>
+          <div class="dropdown">
+            <a href="about.html" class="dropdown-link">학원소개</a>
+            <a href="teachers.html" class="dropdown-link">강사 소개</a>
+            <a href="facility.html" class="dropdown-link">시설 안내</a>
+            <a href="location.html" class="dropdown-link">오시는 길</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="curriculum.html" class="nav-link">커리큘럼</a>
+        </div>
+        <div class="nav-item">
+          <a href="success.html" class="nav-link">합격자 소개</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html" class="nav-link active">상담 신청</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <a href="../index.html" class="mobile-nav-link">홈</a>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">학원소개</a>
+      <div class="mobile-dropdown">
+        <a href="about.html" class="mobile-dropdown-link">학원소개</a>
+        <a href="teachers.html" class="mobile-dropdown-link">강사 소개</a>
+        <a href="facility.html" class="mobile-dropdown-link">시설 안내</a>
+        <a href="location.html" class="mobile-dropdown-link">오시는 길</a>
+      </div>
+    </div>
+    <a href="curriculum.html" class="mobile-nav-link">커리큘럼</a>
+    <a href="success.html" class="mobile-nav-link">합격자 소개</a>
+    <a href="contact.html" class="mobile-nav-link">상담 신청</a>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">상담 신청</h1>
+      <p class="page-breadcrumb">
+        <a href="../index.html">홈</a> / 상담 신청
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="section contact-section">
+    <div class="container">
+      <div class="contact-form-wrap scroll-animate">
+        <form id="leadForm" class="contact-form">
+          <div class="form-group">
+            <label for="name">이름 *</label>
+            <input name="name" id="name" required type="text" placeholder="이름을 입력해주세요">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">연락처 *</label>
+            <input name="phone" id="phone" required type="tel" placeholder="010-0000-0000">
+          </div>
+
+          <div class="form-group">
+            <label for="email">이메일</label>
+            <input name="email" id="email" type="email" placeholder="example@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="course">관심 과정 *</label>
+            <select name="course" id="course" required>
+              <option value="">선택해주세요</option>
+              <option value="입시반 고등">입시반 고등</option>
+              <option value="예비 입시반">예비 입시반</option>
+              <option value="주말 입시반">주말 입시반</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">문의 내용</label>
+            <textarea name="message" id="message" rows="6" placeholder="궁금하신 내용을 자유롭게 작성해주세요"></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn-submit">
+            상담 신청하기
+          </button>
+          <p id="status" class="form-status"></p>
+        </form>
+
+        <!-- Hidden iframe for form submission -->
+        <iframe id="hiddenFrame" style="display:none;"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <div class="footer-logo"><img src="../images/logo.jpg" alt="뜸 ACTORS" class="footer-logo-img"></div>
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-address">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2025 뜸 연기학원. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">개인정보처리방침</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Google Apps Script Web App URL
+    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx2qCjvpQY5mVqMKV6tYFsNP9ZNPop6vVl2VnfJ6ofC44ph-6z_4cLiiHkf_cDcrEyV/exec";
+
+    function toQuery(obj) {
+      const params = new URLSearchParams();
+      for (const k in obj) params.set(k, obj[k] ?? "");
+      params.set("_ts", Date.now().toString()); // Cache prevention
+      return params.toString();
+    }
+
+    document.getElementById("leadForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const form = e.currentTarget;
+      const btn = document.getElementById("submitBtn");
+      const status = document.getElementById("status");
+      const iframe = document.getElementById("hiddenFrame");
+
+      btn.disabled = true;
+      btn.style.opacity = "0.7";
+      status.textContent = "접수 중입니다...";
+      status.style.color = "#666";
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const url = WEBAPP_URL + "?" + toQuery(data);
+
+      let done = false;
+
+      iframe.onload = () => {
+        if (done) return;
+        done = true;
+        status.textContent = "접수 완료! 곧 연락드릴게요.";
+        status.style.color = "#27ae60";
+        form.reset();
+        btn.disabled = false;
+        btn.style.opacity = "1";
+      };
+
+      setTimeout(() => {
+        if (done) return;
+        done = true;
+        status.textContent = "전송 실패. 다시 시도해주세요.";
+        status.style.color = "#e74c3c";
+        btn.disabled = false;
+        btn.style.opacity = "1";
+      }, 8000);
+
+      iframe.src = url;
+    });
+  </script>
+</body>
+</html>

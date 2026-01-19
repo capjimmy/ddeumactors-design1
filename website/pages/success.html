@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="뜸 연기학원 합격자 소개">
+  <title>합격자 소개 - 뜸 연기학원</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><img src="../images/logo.jpg" alt="뜸 ACTORS" class="logo-img"></a>
+
+      <nav class="nav">
+        <div class="nav-item">
+          <a href="../index.html" class="nav-link">홈</a>
+        </div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link">학원소개</a>
+          <div class="dropdown">
+            <a href="about.html" class="dropdown-link">학원소개</a>
+            <a href="teachers.html" class="dropdown-link">강사 소개</a>
+            <a href="facility.html" class="dropdown-link">시설 안내</a>
+            <a href="location.html" class="dropdown-link">오시는 길</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="curriculum.html" class="nav-link">커리큘럼</a>
+        </div>
+        <div class="nav-item">
+          <a href="success.html" class="nav-link active">합격자 소개</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html" class="nav-link">상담 신청</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <a href="../index.html" class="mobile-nav-link">홈</a>
+    <div class="mobile-nav-item has-dropdown">
+      <a href="#" class="mobile-nav-link">학원소개</a>
+      <div class="mobile-dropdown">
+        <a href="about.html" class="mobile-dropdown-link">학원소개</a>
+        <a href="teachers.html" class="mobile-dropdown-link">강사 소개</a>
+        <a href="facility.html" class="mobile-dropdown-link">시설 안내</a>
+        <a href="location.html" class="mobile-dropdown-link">오시는 길</a>
+      </div>
+    </div>
+    <a href="curriculum.html" class="mobile-nav-link">커리큘럼</a>
+    <a href="success.html" class="mobile-nav-link">합격자 소개</a>
+    <a href="contact.html" class="mobile-nav-link">상담 신청</a>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">합격자 소개</h1>
+      <p class="page-breadcrumb">
+        <a href="../index.html">홈</a> / 합격자 소개
+      </p>
+    </div>
+  </section>
+
+  <!-- Success Stories Content -->
+  <section class="section success-section">
+    <div class="container">
+      <div id="successGrid" class="success-grid">
+        <div class="success-loading">데이터를 불러오는 중...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info-wrap">
+          <div class="footer-logo"><img src="../images/logo.jpg" alt="뜸 ACTORS" class="footer-logo-img"></div>
+          <div class="footer-info">
+            <p><strong>뜸 연기학원</strong></p>
+            <p>사업자번호 295-95-01689</p>
+            <p>서울특별시 동작구 동작대로 71 3층</p>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">02-525-0701</div>
+          <div class="footer-address">평일 10:00 - 22:00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2025 뜸 연기학원. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">개인정보처리방침</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Google Sheets URL for success stories
+    const SUCCESS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH5yGKWWaPSmqvWJJtbR2yNtVU4EaYoIyXReUWaWIllKPorVY1Q2AEfBYoN3JBYxDUq-vaN0Pwe973/pub?gid=571115650&single=true&output=csv";
+
+    // CSV Parser
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let cur = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        const next = text[i + 1];
+
+        if (ch === '"' && inQuotes && next === '"') {
+          cur += '"';
+          i++;
+          continue;
+        }
+        if (ch === '"') {
+          inQuotes = !inQuotes;
+          continue;
+        }
+        if (ch === ',' && !inQuotes) {
+          row.push(cur.trim());
+          cur = '';
+          continue;
+        }
+        if ((ch === '\n' || ch === '\r') && !inQuotes) {
+          if (cur.length || row.length) {
+            row.push(cur.trim());
+            rows.push(row);
+          }
+          cur = '';
+          row = [];
+          continue;
+        }
+        cur += ch;
+      }
+
+      if (cur.length || row.length) {
+        row.push(cur.trim());
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    // Escape HTML
+    function escapeHTML(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Check if first row is header
+    function isHeaderRow(row) {
+      if (!row || row.length === 0) return false;
+      const firstCell = String(row[0] || '').toLowerCase();
+      return firstCell.includes('이름') || firstCell.includes('name') || firstCell === '성명';
+    }
+
+    // Load success stories from Google Sheets
+    async function loadSuccessStories() {
+      const grid = document.getElementById('successGrid');
+
+      console.log('Loading success stories from:', SUCCESS_CSV_URL);
+
+      try {
+        const res = await fetch(SUCCESS_CSV_URL, { cache: 'no-store' });
+
+        if (!res.ok) {
+          throw new Error('Network response was not ok: ' + res.status);
+        }
+
+        const csv = await res.text();
+        console.log('Success CSV received:', csv.substring(0, 300));
+
+        const rows = parseCSV(csv);
+        console.log('Parsed rows:', rows);
+
+        // Skip header row if exists
+        const dataRows = rows.length > 0 && isHeaderRow(rows[0]) ? rows.slice(1) : rows;
+        console.log('Data rows after header removal:', dataRows.length);
+
+        if (dataRows.length === 0) {
+          grid.innerHTML = '<p class="success-loading">등록된 합격자가 없습니다.</p>';
+          return;
+        }
+
+        grid.innerHTML = '';
+
+        // Expected columns: 이름, 합격대학, 전공, 년도, 이미지URL, 한마디
+        dataRows.forEach((row, index) => {
+          const [name, university, major, year, imageUrl, comment] = row;
+
+          if (!name) return;
+
+          const card = document.createElement('article');
+          card.className = 'success-card scroll-animate';
+          card.style.animationDelay = `${index * 0.1}s`;
+
+          // Use default placeholder if no image
+          const imgSrc = imageUrl && imageUrl.startsWith('http')
+            ? imageUrl
+            : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80';
+
+          card.innerHTML = `
+            <div class="success-card-image">
+              <img src="${escapeHTML(imgSrc)}" alt="${escapeHTML(name)}" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'">
+              ${year ? `<span class="success-card-badge">${escapeHTML(year)}</span>` : ''}
+            </div>
+            <div class="success-card-body">
+              <p class="success-card-univ">${escapeHTML(university || '')} ${major ? escapeHTML(major) : ''}</p>
+              <h3 class="success-card-name">${escapeHTML(name)}</h3>
+              ${comment ? `<p class="success-card-text">"${escapeHTML(comment)}"</p>` : ''}
+            </div>
+          `;
+
+          grid.appendChild(card);
+        });
+
+        console.log('Success stories loaded:', dataRows.length, 'items');
+
+        // Initialize scroll animations
+        initScrollAnimations();
+
+      } catch (error) {
+        console.error('Failed to load success stories:', error);
+        grid.innerHTML = '<p class="success-loading">데이터를 불러오는데 실패했습니다: ' + error.message + '</p>';
+      }
+    }
+
+    // Initialize scroll animations
+    function initScrollAnimations() {
+      const animateElements = document.querySelectorAll('.scroll-animate');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      animateElements.forEach(el => observer.observe(el));
+    }
+
+    // Load on DOM ready
+    document.addEventListener('DOMContentLoaded', loadSuccessStories);
+  </script>
+</body>
+</html>

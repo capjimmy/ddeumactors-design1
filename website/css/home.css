@@ -1,0 +1,370 @@
+/* ===============================================
+   뜸 연기학원 - 홈페이지 스타일
+   =============================================== */
+
+/* ===== Metrics Section ===== */
+.metrics-section {
+  padding: 20px 0;
+  background: var(--color-bg);
+}
+
+.metrics-section .container {
+  max-width: 1100px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 18px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+}
+
+.metric-value {
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #e05656;
+  line-height: 1.05;
+}
+
+.metric-label {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #6b6b6b;
+  letter-spacing: 0.02em;
+  word-break: keep-all;
+}
+
+@media (max-width: 1024px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .metric-value {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .metric-card {
+    padding: 22px 16px;
+    border-radius: 16px;
+  }
+  .metric-value {
+    font-size: 32px;
+  }
+  .metric-label {
+    font-size: 13px;
+  }
+}
+
+/* ===== Manifesto Section ===== */
+.manifesto-section {
+  padding: 80px 0;
+  background: var(--color-bg);
+}
+
+.manifesto-content {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.manifesto-line {
+  margin: 0 0 26px;
+  font-size: 22px;
+  line-height: 1.7;
+  color: #222;
+  letter-spacing: -0.02em;
+}
+
+.manifesto-line:last-child {
+  margin-bottom: 0;
+}
+
+.m-key {
+  font-weight: 900;
+  color: #111;
+}
+
+.m-em {
+  font-weight: 900;
+  color: #e23b3b;
+}
+
+.manifesto-strong {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.m-brand {
+  position: relative;
+  font-weight: 900;
+  color: #111;
+}
+
+.m-brand::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  width: 120%;
+  height: 3px;
+  background: rgba(226, 59, 59, 0.22);
+}
+
+.manifesto-divider {
+  width: 36px;
+  height: 1px;
+  background: #e2e2e2;
+  margin: 34px auto 32px;
+}
+
+@media (max-width: 720px) {
+  .manifesto-section {
+    padding: 60px 0;
+  }
+  .manifesto-line {
+    font-size: 18px;
+  }
+  .manifesto-strong {
+    font-size: 20px;
+  }
+}
+
+/* ===== Rolling Names Section ===== */
+:root {
+  --row-height: 40px;
+  --visible-rows: 5;
+  --cols: 4;
+  --duration: 18s;
+  --col-gap: 28px;
+  --pad-y: 18px;
+  --pad-x: 20px;
+  --shift: 0px;
+  --font-size: clamp(12px, 1.6vw, 16px);
+}
+
+.rolling-section {
+  padding: 26px 0;
+  background: var(--color-bg);
+}
+
+.rolling-section .container {
+  max-width: 1100px;
+}
+
+.rolling-title {
+  margin: 0 0 16px 0;
+  text-align: center;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: #161616;
+}
+
+.rolling-title span {
+  display: block;
+  margin-top: 6px;
+  font-size: clamp(12px, 1.6vw, 14px);
+  font-weight: 700;
+  color: #7a7a7a;
+}
+
+.rolling-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: calc(var(--row-height) * var(--visible-rows));
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 22px;
+  padding: var(--pad-y) var(--pad-x);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+}
+
+.name-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  grid-auto-rows: var(--row-height);
+  animation: rollUp var(--duration) linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.rolling-body:hover .name-grid {
+  animation-play-state: paused;
+}
+
+.name-grid li {
+  height: var(--row-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  color: #2f2f2f;
+}
+
+@keyframes rollUp {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, calc(-1 * var(--shift)), 0); }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --row-height: 38px;
+    --col-gap: 22px;
+    --pad-x: 18px;
+    --font-size: clamp(11px, 1.9vw, 15px);
+  }
+  .rolling-body {
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --row-height: 34px;
+    --col-gap: 16px;
+    --pad-x: 14px;
+    --font-size: clamp(10px, 3.0vw, 13px);
+  }
+  .rolling-body {
+    border-radius: 16px;
+  }
+}
+
+/* ===== Universities Section ===== */
+.univ-section {
+  padding: 24px 0;
+  background: var(--color-bg);
+}
+
+.univ-section .container {
+  max-width: 1100px;
+}
+
+.univ-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 22px;
+  padding: 36px 32px 40px;
+  text-align: center;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.univ-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06);
+}
+
+.univ-title {
+  margin: 0 0 26px 0;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  color: #161616;
+}
+
+.univ-title span {
+  display: block;
+  margin-top: 6px;
+  font-size: clamp(12px, 1.6vw, 14px);
+  font-weight: 700;
+  color: #7a7a7a;
+}
+
+.univ-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px 14px;
+}
+
+.univ-grid li {
+  border: 1px solid #ededed;
+  border-radius: 999px;
+  padding: 12px 10px;
+  font-size: clamp(12px, 1.6vw, 15px);
+  font-weight: 800;
+  color: #2b2b2b;
+  background: #ffffff;
+  word-break: keep-all;
+}
+
+@media (max-width: 1024px) {
+  .univ-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .univ-card {
+    padding: 30px 20px 32px;
+    border-radius: 18px;
+  }
+  .univ-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+/* ===== CTA Section ===== */
+.cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.cta-content {
+  text-align: center;
+  color: #fff;
+}
+
+.cta-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.cta-desc {
+  font-size: 16px;
+  opacity: 0.8;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 720px) {
+  .cta-section {
+    padding: 70px 0;
+  }
+}
