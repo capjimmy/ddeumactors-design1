@@ -160,6 +160,313 @@
   color: var(--color-white);
 }
 
+/* Facility Loading */
+.facility-loading {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: var(--color-gray);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Facility Admin Toolbar */
+.facility-admin-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.btn-add-facility {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--color-gold), #b8960c);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-add-facility:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+}
+
+.btn-add-facility svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Facility Card Admin Mode */
+.facility-card.admin-mode {
+  position: relative;
+}
+
+.facility-admin-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.facility-card.admin-mode:hover .facility-admin-controls {
+  opacity: 1;
+}
+
+.admin-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.admin-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.admin-btn.edit-btn {
+  background: rgba(52, 152, 219, 0.9);
+  color: #fff;
+}
+
+.admin-btn.edit-btn:hover {
+  background: #3498db;
+}
+
+.admin-btn.delete-btn {
+  background: rgba(231, 76, 60, 0.9);
+  color: #fff;
+}
+
+.admin-btn.delete-btn:hover {
+  background: #e74c3c;
+}
+
+.drag-handle {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  cursor: grab;
+  color: #333;
+}
+
+.drag-handle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Drag and Drop States */
+.facility-card.dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.facility-card.drag-over {
+  border: 2px dashed var(--color-gold);
+  transform: scale(1.02);
+}
+
+/* Facility Modal */
+.facility-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.facility-modal.active {
+  display: flex;
+}
+
+.facility-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+}
+
+.facility-modal-content {
+  position: relative;
+  background: var(--color-black-light);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  margin: 20px;
+}
+
+.facility-modal-content h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-gold);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.facility-modal .form-group {
+  margin-bottom: 20px;
+}
+
+.facility-modal label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--color-gray-light);
+  font-size: 14px;
+}
+
+.facility-modal input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.facility-modal input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Image Upload Area */
+.image-upload-area {
+  position: relative;
+  border: 2px dashed var(--color-border);
+  border-radius: 12px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  overflow: hidden;
+}
+
+.image-upload-area:hover {
+  border-color: var(--color-gold);
+}
+
+.image-upload-area input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-gray);
+}
+
+.upload-placeholder svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+}
+
+.upload-placeholder span {
+  font-size: 14px;
+}
+
+#imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.btn-cancel {
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-gray);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-cancel:hover {
+  border-color: var(--color-gray);
+  color: var(--color-white);
+}
+
+.btn-save {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--color-gold), #b8960c);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-save:hover {
+  box-shadow: 0 4px 12px rgba(212,175,55,0.3);
+}
+
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ===== Location Page ===== */
 .location-section {
   padding: 80px 0;
