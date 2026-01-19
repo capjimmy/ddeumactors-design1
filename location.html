@@ -117,9 +117,23 @@
         zoomControl: true,
         zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER }
       });
-      var marker = new naver.maps.Marker({ position: position, map: map });
+      var markerContent = [
+        '<div style="position:relative;cursor:pointer;">',
+        '  <div style="width:50px;height:50px;border-radius:50% 50% 50% 0;background:linear-gradient(135deg,#d4af37,#b8960c);transform:rotate(-45deg);box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">',
+        '    <div style="transform:rotate(45deg);color:#fff;font-size:20px;font-weight:bold;">뜸</div>',
+        '  </div>',
+        '</div>'
+      ].join('');
+      var marker = new naver.maps.Marker({
+        position: position,
+        map: map,
+        icon: {
+          content: markerContent,
+          anchor: new naver.maps.Point(25, 50)
+        }
+      });
       var infoWindow = new naver.maps.InfoWindow({
-        content: '<div style="padding:10px 16px;font-size:14px;font-weight:600;">뜸 연기학원</div>',
+        content: '<div style="padding:12px 20px;font-size:15px;font-weight:700;background:#1a1a1a;color:#d4af37;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);white-space:nowrap;">뜸 연기학원</div>',
         borderWidth: 0,
         disableAnchor: true,
         backgroundColor: "transparent"
