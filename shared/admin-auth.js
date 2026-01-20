@@ -220,6 +220,9 @@ function addAdminStyles() {
     body.admin-mode {
       padding-top: 40px;
     }
+    body.admin-mode .header {
+      top: 40px;
+    }
 
     /* Hidden admin trigger - now on footer logo */
     .footer-logo-img {
