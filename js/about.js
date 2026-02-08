@@ -40,10 +40,12 @@ async function loadAbout() {
       await setDoc(aboutRef, { ...aboutData, updatedAt: new Date() });
     }
 
-    // Update image if stored
-    if (aboutData.imageUrl) {
-      const img = document.querySelector('.about-image img');
-      if (img) img.src = aboutData.imageUrl;
+    // Update image
+    const img = document.querySelector('.about-image img');
+    if (img) {
+      const url = aboutData.imageUrl || 'images/about.png';
+      img.onload = () => { img.style.opacity = '1'; };
+      img.src = url;
     }
 
     // Update features
@@ -97,7 +99,11 @@ window.editAboutImage = async function() {
       await setDoc(aboutRef, { ...current, imageUrl, updatedAt: new Date() });
 
       const img = document.querySelector('.about-image img');
-      if (img) img.src = imageUrl;
+      if (img) {
+        img.style.opacity = '0';
+        img.onload = () => { img.style.opacity = '1'; };
+        img.src = imageUrl;
+      }
       aboutData = { ...current, imageUrl };
 
       alert('이미지가 변경되었습니다.');

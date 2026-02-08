@@ -663,19 +663,20 @@ function initManifestoAdmin() {
   observer.observe(document.body, { attributes: true });
 
   editBtn.addEventListener('click', async () => {
-    const textarea = document.getElementById('manifestoTextarea');
+    const editor = document.getElementById('manifestoEditor');
     try {
       const manifestoRef = doc(db, 'settings', 'manifesto');
       const snap = await getDoc(manifestoRef);
       if (snap.exists() && snap.data().html) {
-        textarea.value = snap.data().html;
+        editor.innerHTML = snap.data().html;
       } else {
-        textarea.value = DEFAULT_MANIFESTO;
+        editor.innerHTML = DEFAULT_MANIFESTO;
       }
     } catch (e) {
-      textarea.value = DEFAULT_MANIFESTO;
+      editor.innerHTML = DEFAULT_MANIFESTO;
     }
     modal.style.display = 'flex';
+    editor.focus();
   });
 
   form.addEventListener('submit', async (e) => {
@@ -685,7 +686,7 @@ function initManifestoAdmin() {
     submitBtn.textContent = '저장 중...';
 
     try {
-      const html = document.getElementById('manifestoTextarea').value;
+      const html = document.getElementById('manifestoEditor').innerHTML;
       const manifestoRef = doc(db, 'settings', 'manifesto');
       await setDoc(manifestoRef, { html, updatedAt: new Date() });
       await loadManifesto();
@@ -704,6 +705,19 @@ function initManifestoAdmin() {
 window.closeManifestoModal = function() {
   const modal = document.getElementById('manifestoEditModal');
   if (modal) modal.style.display = 'none';
+};
+
+// Rich text editor commands
+window.manifestoExec = function(command, value) {
+  document.execCommand(command, false, value || null);
+  document.getElementById('manifestoEditor').focus();
+};
+
+window.manifestoFontSize = function(size) {
+  if (!size) return;
+  document.execCommand('fontSize', false, size);
+  document.getElementById('manifestoEditor').focus();
+  document.getElementById('fontSizeSelect').value = '';
 };
 
 // ========== Utility Functions ==========

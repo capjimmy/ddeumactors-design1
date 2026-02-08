@@ -98,6 +98,27 @@
   color: var(--color-black);
 }
 
+/* Rich Text Editor Buttons */
+.rte-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.rte-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--color-gold);
+}
+
 /* Modal Styles */
 .modal {
   position: fixed;
