@@ -96,7 +96,7 @@ function renderCourses() {
 
   container.innerHTML = curriculumData.courses.map((course, i) => `
     <article class="curriculum-card scroll-animate">
-      ${isAdmin ? `<button class="admin-edit-section-btn" style="position:absolute;top:12px;right:12px;z-index:2;" onclick="editCourse(${i})">편집</button>` : ''}
+      ${isAdmin ? `<button class="admin-edit-section-btn" style="display:inline-block;position:absolute;top:12px;right:12px;z-index:2;" onclick="editCourse(${i})">편집</button>` : ''}
       <span class="curriculum-badge" ${course.badgeStyle ? `style="${escapeHTML(course.badgeStyle)}"` : ''}>${escapeHTML(course.badge)}</span>
       <h3 class="curriculum-card-title">${escapeHTML(course.title)}</h3>
       <p class="curriculum-card-sub">${escapeHTML(course.subtitle)}</p>
