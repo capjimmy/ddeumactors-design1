@@ -9,10 +9,16 @@ const DEFAULT_CONTACT = {
   hours: '평일 11:00 - 22:00'
 };
 
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
   loadContactInfo();
   initContactAdmin();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 
 async function loadContactInfo() {
   try {

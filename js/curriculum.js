@@ -54,10 +54,16 @@ const DEFAULT_GUIDANCE = [
 
 let curriculumData = null;
 
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
   loadCurriculum();
   initCurriculumAdmin();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 
 async function loadCurriculum() {
   try {
@@ -75,6 +81,10 @@ async function loadCurriculum() {
     renderGuidance();
   } catch (error) {
     console.error('Failed to load curriculum:', error);
+    // Firebase 실패 시 기본 데이터로 렌더링
+    curriculumData = { courses: [...DEFAULT_COURSES], guidance: [...DEFAULT_GUIDANCE] };
+    renderCourses();
+    renderGuidance();
   }
 }
 

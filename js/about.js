@@ -17,10 +17,16 @@ const FEATURE_ICONS = [
 
 let aboutData = null;
 
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
   loadAbout();
   initAboutAdmin();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 
 async function loadAbout() {
   try {
