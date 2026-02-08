@@ -823,6 +823,26 @@
   color: #c0392b;
 }
 
+/* ===== Admin Section Edit Buttons ===== */
+.admin-edit-section-btn {
+  display: none;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.admin-edit-section-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
 /* ===== Modal ===== */
 .modal {
   position: fixed;
