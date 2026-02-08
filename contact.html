@@ -104,6 +104,10 @@
     <div class="container">
       <div class="contact-wrapper">
         <div class="contact-info">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div></div>
+            <button class="contact-admin-btn admin-edit-section-btn" style="display:none;" onclick="editContactInfo()">연락처 편집</button>
+          </div>
           <h2 class="contact-info-title">지금 상담을 신청하세요</h2>
           <p class="contact-info-desc">레벨 테스트 후 맞춤 커리큘럼을 안내해 드립니다.</p>
 
@@ -210,8 +214,43 @@
     </div>
   </footer>
 
+  <!-- Contact Edit Modal -->
+  <div class="modal" id="contactEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeContactEditModal()"></div>
+    <div class="modal-content">
+      <h3 class="modal-title">연락처 / 안내 문구 편집</h3>
+      <form id="contactEditForm" onsubmit="saveContactEdit(event)">
+        <div class="form-group">
+          <label>안내 제목</label>
+          <input type="text" id="contactTitle" placeholder="지금 상담을 신청하세요">
+        </div>
+        <div class="form-group">
+          <label>안내 설명</label>
+          <input type="text" id="contactDesc" placeholder="레벨 테스트 후 맞춤 커리큘럼을 안내해 드립니다.">
+        </div>
+        <div class="form-group">
+          <label>주소</label>
+          <input type="text" id="contactAddress" placeholder="서울특별시 동작구 동작대로 71 3층">
+        </div>
+        <div class="form-group">
+          <label>전화번호</label>
+          <input type="text" id="contactPhone" placeholder="02-525-0701">
+        </div>
+        <div class="form-group">
+          <label>운영시간</label>
+          <input type="text" id="contactHours" placeholder="평일 11:00 - 22:00">
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeContactEditModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="./shared/admin-auth.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/contact-admin.js"></script>
   <script>
     // Google Apps Script Web App URL (상담신청 폼 제출용)
     const FORM_SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbx2qCjvpQY5mVqMKV6tYFsNP9ZNPop6vVl2VnfJ6ofC44ph-6z_4cLiiHkf_cDcrEyV/exec';

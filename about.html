@@ -103,11 +103,15 @@
   <section class="section about-section">
     <div class="container">
       <!-- About Image -->
-      <div class="about-image scroll-animate">
+      <div class="about-image scroll-animate" style="position:relative;">
         <img src="images/about.png" alt="강남 뜸 연기학원 수업 장면">
+        <button class="about-admin-btn admin-edit-section-btn" style="display:none;position:absolute;top:12px;right:12px;" onclick="editAboutImage()">이미지 변경</button>
       </div>
 
       <!-- Features Grid -->
+      <div style="text-align:right;margin-bottom:12px;">
+        <button class="about-admin-btn admin-edit-section-btn" style="display:none;" onclick="editFeatures()">특징 편집</button>
+      </div>
       <div class="features-grid">
         <div class="feature-card scroll-animate">
           <div class="feature-icon">
@@ -165,7 +169,23 @@
     </div>
   </footer>
 
+  <!-- Features Edit Modal -->
+  <div class="modal" id="featuresEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeFeaturesModal()"></div>
+    <div class="modal-content modal-large">
+      <h3 class="modal-title">학원 특징 편집</h3>
+      <form id="featuresEditForm" onsubmit="saveFeaturesEdit(event)">
+        <div id="featuresInputs"></div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeFeaturesModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="./shared/admin-auth.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/about.js"></script>
 </body>
 </html>

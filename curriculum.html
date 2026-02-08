@@ -64,117 +64,17 @@
         <p class="curriculum-desc">실기 중심 훈련과 개인 맞춤 코칭으로, 무대·카메라 앞에서 통하는 연기를 만듭니다.</p>
       </div>
 
-      <div class="curriculum-cards">
-        <!-- 입시반 -->
-        <article class="curriculum-card scroll-animate">
-          <span class="curriculum-badge">입시반</span>
-          <h3 class="curriculum-card-title">입시반 고등</h3>
-          <p class="curriculum-card-sub">재입 포함</p>
-
-          <div class="curriculum-meta">
-            <div class="curriculum-meta-item">
-              <div class="label">수업</div>
-              <div class="value">주 6회</div>
-            </div>
-            <div class="curriculum-meta-item">
-              <div class="label">총 시간</div>
-              <div class="value">72시간</div>
-            </div>
-            <div class="curriculum-meta-item price">
-              <div class="label">수강료</div>
-              <div class="value">95만원</div>
-            </div>
-          </div>
-
-          <div class="curriculum-points">
-            <div class="curriculum-points-title">핵심 포인트</div>
-            <ul class="curriculum-points-list">
-              <li>대학별 실기 유형 분석 및 전략 수립</li>
-              <li>자유·지정·즉흥·상황 연기 완성</li>
-              <li>개인 캐릭터·톤 확립 & 실전 안정감 강화</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- 예비입시반 -->
-        <article class="curriculum-card scroll-animate">
-          <span class="curriculum-badge" style="background:rgba(6,182,212,0.15);border-color:rgba(6,182,212,0.3);color:#22d3ee;">예비입시반</span>
-          <h3 class="curriculum-card-title">예비입시반</h3>
-          <p class="curriculum-card-sub">고2 이하</p>
-
-          <div class="curriculum-meta">
-            <div class="curriculum-meta-item">
-              <div class="label">수업</div>
-              <div class="value">주 4회</div>
-            </div>
-            <div class="curriculum-meta-item">
-              <div class="label">총 시간</div>
-              <div class="value">32시간</div>
-            </div>
-            <div class="curriculum-meta-item price">
-              <div class="label">수강료</div>
-              <div class="value">50만원</div>
-            </div>
-          </div>
-
-          <div class="curriculum-points">
-            <div class="curriculum-points-title">핵심 포인트</div>
-            <ul class="curriculum-points-list">
-              <li>호흡·발성·발음·집중·상상력 기초 확립</li>
-              <li>장면 분석(상황·목표·행동) 습관화</li>
-              <li>리듬감·신체 표현 기반 강화</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- 주말반 -->
-        <article class="curriculum-card scroll-animate">
-          <span class="curriculum-badge" style="background:rgba(6,182,212,0.15);border-color:rgba(6,182,212,0.3);color:#22d3ee;">주말반</span>
-          <h3 class="curriculum-card-title">주말 입시반</h3>
-          <p class="curriculum-card-sub">CLASS 3시간 · 정원 8명</p>
-
-          <div class="curriculum-meta">
-            <div class="curriculum-meta-item">
-              <div class="label">수업</div>
-              <div class="value">주 4회</div>
-            </div>
-            <div class="curriculum-meta-item">
-              <div class="label">총 시간</div>
-              <div class="value">48시간</div>
-            </div>
-            <div class="curriculum-meta-item price">
-              <div class="label">수강료</div>
-              <div class="value">75만원</div>
-            </div>
-          </div>
-
-          <div class="curriculum-points">
-            <div class="curriculum-points-title">핵심 포인트</div>
-            <ul class="curriculum-points-list">
-              <li>주말 집중 루틴으로 실기 핵심 역량 빠른 상승</li>
-              <li>독백·지정·제시·즉흥·구술 대학별 대응 강화</li>
-              <li>주특기/부특기 기초 → 개인 작품 완성</li>
-            </ul>
-          </div>
-        </article>
+      <div class="curriculum-cards" id="curriculumCards">
+        <!-- Firebase에서 동적 로딩 -->
       </div>
 
       <!-- 공통 안내 -->
       <div class="curriculum-footer scroll-animate" style="margin-top:40px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:30px;max-width:1100px;margin-left:auto;margin-right:auto;">
-        <h3 style="font-size:15px;font-weight:800;color:rgba(255,255,255,0.9);margin-bottom:16px;">공통 안내</h3>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-          <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
-            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">상담/레벨</div>
-            <div style="font-size:14px;color:rgba(255,255,255,0.85);">레벨 테스트 후 반 편성 · 목표 대학/성향 기반 추천</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
-            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">점검</div>
-            <div style="font-size:14px;color:rgba(255,255,255,0.85);">월간 점검(옵션) · 모의 실기/면접(필요 시)</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;">
-            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">유의</div>
-            <div style="font-size:14px;color:rgba(255,255,255,0.85);">커리큘럼은 시즌/입시 트렌드에 따라 일부 조정될 수 있습니다</div>
-          </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <h3 style="font-size:15px;font-weight:800;color:rgba(255,255,255,0.9);margin:0;">공통 안내</h3>
+          <button class="curriculum-admin-btn admin-edit-section-btn" style="display:none;" onclick="editGuidance()">안내 편집</button>
+        </div>
+        <div id="guidanceContent" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
         </div>
       </div>
     </div>
@@ -202,7 +102,55 @@
     </div>
   </footer>
 
+  <!-- Course Edit Modal -->
+  <div class="modal" id="courseEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeCourseModal()"></div>
+    <div class="modal-content modal-large">
+      <h3 class="modal-title">과정 편집</h3>
+      <form id="courseEditForm" onsubmit="saveCourseEdit(event)">
+        <input type="hidden" id="courseIndex">
+        <div class="form-group" style="display:flex;gap:12px;">
+          <div style="flex:1;"><label>배지 텍스트</label><input type="text" id="courseBadge" placeholder="입시반"></div>
+          <div style="flex:1;"><label>배지 스타일 (CSS)</label><input type="text" id="courseBadgeStyle" placeholder="비워두면 기본 금색"></div>
+        </div>
+        <div class="form-group" style="display:flex;gap:12px;">
+          <div style="flex:1;"><label>과정명</label><input type="text" id="courseTitle" required></div>
+          <div style="flex:1;"><label>부제</label><input type="text" id="courseSubtitle"></div>
+        </div>
+        <div class="form-group" style="display:flex;gap:12px;">
+          <div style="flex:1;"><label>수업 횟수</label><input type="text" id="courseSchedule" placeholder="주 6회"></div>
+          <div style="flex:1;"><label>총 시간</label><input type="text" id="courseHours" placeholder="72시간"></div>
+          <div style="flex:1;"><label>수강료</label><input type="text" id="coursePrice" placeholder="95만원"></div>
+        </div>
+        <div class="form-group">
+          <label>핵심 포인트 (한 줄에 하나씩)</label>
+          <textarea id="coursePoints" rows="4"></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeCourseModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Guidance Edit Modal -->
+  <div class="modal" id="guidanceEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeGuidanceModal()"></div>
+    <div class="modal-content modal-large">
+      <h3 class="modal-title">공통 안내 편집</h3>
+      <form id="guidanceEditForm" onsubmit="saveGuidanceEdit(event)">
+        <div id="guidanceInputs"></div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeGuidanceModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="./shared/admin-auth.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/curriculum.js"></script>
 </body>
 </html>

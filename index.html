@@ -188,7 +188,10 @@
   <!-- Manifesto Section -->
   <section class="section manifesto-section">
     <div class="container">
-      <div class="manifesto-content scroll-animate">
+      <div class="section-header" style="margin-bottom:0;">
+        <button class="admin-edit-section-btn" id="editManifestoBtn" style="display:none;">문구 편집</button>
+      </div>
+      <div class="manifesto-content scroll-animate" id="manifestoContent">
         <p class="manifesto-line">
           <span class="m-key">뜸</span>은 겉으로 드러나지 않지만,<br>
           <span class="m-gold">결과를 바꾸는 시간</span>이다.
@@ -208,6 +211,25 @@
       </div>
     </div>
   </section>
+
+  <!-- Manifesto Edit Modal -->
+  <div class="modal" id="manifestoEditModal" style="display:none;">
+    <div class="modal-overlay" onclick="closeManifestoModal()"></div>
+    <div class="modal-content modal-large">
+      <h3 class="modal-title">매니페스토 문구 편집</h3>
+      <p class="modal-help">HTML 태그를 사용할 수 있습니다. &lt;br&gt;로 줄바꿈, &lt;span class="m-key"&gt;뜸&lt;/span&gt;, &lt;span class="m-gold"&gt;강조&lt;/span&gt;, &lt;span class="m-brand"&gt;브랜드&lt;/span&gt;</p>
+      <form id="manifestoEditForm">
+        <div class="form-group">
+          <label>문구 (HTML)</label>
+          <textarea id="manifestoTextarea" rows="12" style="font-family:monospace;font-size:13px;"></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeManifestoModal()">취소</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Rolling Names Section -->
   <section class="section rolling-section">

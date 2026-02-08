@@ -14,10 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
   loadStats();
   loadNames();
   loadUniversities();
+  loadManifesto();
   initHeroAdmin();
   initNamesAdmin();
   initUnivAdmin();
   initStatsAdmin();
+  initManifestoAdmin();
 });
 
 // Load Hero Video and Text from Firebase
@@ -604,6 +606,103 @@ function initStatsAdmin() {
 // Close stats modal
 window.closeStatsModal = function() {
   const modal = document.getElementById('statsEditModal');
+  if (modal) modal.style.display = 'none';
+};
+
+// ========== Manifesto Functions ==========
+
+const DEFAULT_MANIFESTO = `<p class="manifesto-line">
+  <span class="m-key">뜸</span>은 겉으로 드러나지 않지만,<br>
+  <span class="m-gold">결과를 바꾸는 시간</span>이다.
+</p>
+<p class="manifesto-line">
+  <span class="m-key">뜸</span>은 남의 속도가 아닌,<br>
+  <span class="m-gold">자기 속도를 지키는 일</span>이다.
+</p>
+<div class="manifesto-divider"></div>
+<p class="manifesto-line manifesto-strong">
+  여기는 <span class="m-brand">뜸연기학원</span>이다.
+</p>
+<p class="manifesto-line">
+  오늘을 바꾸면 <span class="m-gold">운명은 따라온다</span><br>
+  <span class="m-brand">뜸 is magic</span>
+</p>`;
+
+async function loadManifesto() {
+  const container = document.getElementById('manifestoContent');
+  if (!container) return;
+
+  try {
+    const manifestoRef = doc(db, 'settings', 'manifesto');
+    const snap = await getDoc(manifestoRef);
+
+    if (snap.exists() && snap.data().html) {
+      container.innerHTML = snap.data().html;
+    } else {
+      await setDoc(manifestoRef, { html: DEFAULT_MANIFESTO, updatedAt: new Date() });
+    }
+  } catch (error) {
+    console.error('Failed to load manifesto:', error);
+  }
+}
+
+function initManifestoAdmin() {
+  const editBtn = document.getElementById('editManifestoBtn');
+  const modal = document.getElementById('manifestoEditModal');
+  const form = document.getElementById('manifestoEditForm');
+
+  if (!editBtn || !modal || !form) return;
+
+  function checkAdminMode() {
+    const isAdmin = document.body.classList.contains('admin-mode');
+    editBtn.style.display = isAdmin ? 'inline-block' : 'none';
+  }
+
+  checkAdminMode();
+  const observer = new MutationObserver(() => checkAdminMode());
+  observer.observe(document.body, { attributes: true });
+
+  editBtn.addEventListener('click', async () => {
+    const textarea = document.getElementById('manifestoTextarea');
+    try {
+      const manifestoRef = doc(db, 'settings', 'manifesto');
+      const snap = await getDoc(manifestoRef);
+      if (snap.exists() && snap.data().html) {
+        textarea.value = snap.data().html;
+      } else {
+        textarea.value = DEFAULT_MANIFESTO;
+      }
+    } catch (e) {
+      textarea.value = DEFAULT_MANIFESTO;
+    }
+    modal.style.display = 'flex';
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = '저장 중...';
+
+    try {
+      const html = document.getElementById('manifestoTextarea').value;
+      const manifestoRef = doc(db, 'settings', 'manifesto');
+      await setDoc(manifestoRef, { html, updatedAt: new Date() });
+      await loadManifesto();
+      closeManifestoModal();
+      alert('저장되었습니다.');
+    } catch (error) {
+      console.error('Failed to save manifesto:', error);
+      alert('저장에 실패했습니다: ' + error.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '저장';
+    }
+  });
+}
+
+window.closeManifestoModal = function() {
+  const modal = document.getElementById('manifestoEditModal');
   if (modal) modal.style.display = 'none';
 };
 
